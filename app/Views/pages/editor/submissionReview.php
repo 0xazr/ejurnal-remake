@@ -179,7 +179,25 @@
 						<td>Recommendation</td>
 						<td colspan="4">
 							<?php if (isset($recommendation)) : ?>
-								<!-- INI HARUSNYA DIISI RECOMMENDATION -->
+								<?php
+								switch ($recommendation['recommendation']) {
+									case 1:
+										echo "Accept Submission";
+										break;
+									case 2:
+										echo "Revision Required";
+										break;
+									case 3:
+										echo "Resubmit for Review";
+										break;
+									case 4:
+										echo "Resubmit Elsewhere";
+										break;
+									case 5:
+										echo "Decline Submission";
+										break;
+								}
+								?>
 							<?php else : ?>
 								None
 							<?php endif; ?>
@@ -199,7 +217,9 @@
 						<td>Uploaded Files</td>
 						<td>
 							<?php if (isset($reviewer_version)) : ?>
-								<?= $reviewer_version['file_name']; ?>
+								<a href="<?= base_url(); ?>/editor/downloadFile/<?= $reviewer_version['file_id']; ?>">
+									<?= $reviewer_version['file_name']; ?>
+								</a>
 							<?php else : ?>
 								None
 							<?php endif; ?>
@@ -306,7 +326,7 @@
 				<td width="20%" class="label">Review Version</td>
 				<td width="80%" class="nodata">
 					<?php if (isset($review_version)) : ?>
-						<?php if (isset($notified)) : ?>
+						<?php if (isset($notified) && (!isset($copyedit_file))) : ?>
 							<input type="radio" name="editorDecisionFile" value="<?= $review_version['article_revision_file_id']; ?>">
 							<a href="/editor/downloadFile/<?= $review_version['file_id'] ?>">
 								<?= $review_version['file_name']; ?>
@@ -344,7 +364,7 @@
 				<td width="20%" class="label">Editor Version</td>
 				<td width="80%" class="nodata">
 					<?php if (isset($editor_version)) : ?>
-						<?php if (isset($notified)) : ?>
+						<?php if (isset($notified) && (!isset($copyedit_file))) : ?>
 							<input type="radio" name="editorDecisionFile" value="<?= $editor_version['article_revision_file_id']; ?>">
 							<a href="/editor/downloadFile/<?= $editor_version['file_id'] ?>">
 								<?= $editor_version['file_name']; ?>

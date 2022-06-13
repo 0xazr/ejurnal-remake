@@ -8,17 +8,17 @@ class Submit extends BaseController
 {
   public function index($page = 1, $articleID = 0)
   {
-    switch($page) {
+    switch ($page) {
       case 1:
         $data['pages'] = [
           'title' => "Step 1. Starting the Submission"
         ];
-        
+
         // Redirect ketika tidak ditemukan article_id di Database
-        if($articleID > 0 && $this->articlesModel->where('article_id', $articleID)->first() == NULL) {
+        if ($articleID > 0 && $this->articlesModel->where('article_id', $articleID)->first() == NULL) {
           return redirect()->to(base_url() . '/author/submit/1');
         }
-        
+
         $data['article'] = [
           'article_id' => $articleID,
         ];
@@ -27,7 +27,7 @@ class Submit extends BaseController
 
         // Untuk Checkbox pada step 1
         $progress = $this->articlesModel->where('article_id', $articleID)->findColumn('progress');
-        if(!$progress) break;
+        if (!$progress) break;
         $data['checked'] = $progress[0] >= 1 ? 'checked' : '';
         $data['article']['progress'] = $progress[0];
         break;
@@ -37,8 +37,7 @@ class Submit extends BaseController
           'title' => "Step 2. Uploading the Submission"
         ];
 
-        if($fileinfo = $this->articleSubmissionFilesModel->where('article_id', $articleID)->orderBy('article_submission_file_id', 'desc')->first())
-        {
+        if ($fileinfo = $this->articleSubmissionFilesModel->where('article_id', $articleID)->orderBy('article_submission_file_id', 'desc')->first()) {
           $data['fileinfo'] = $fileinfo;
         }
 
@@ -51,10 +50,14 @@ class Submit extends BaseController
           'title' => "Step 3. Entering the Submission's Metadata"
         ];
 
-        if($article = $this->articlesModel->find($articleID)) {
+        if ($submitter = $this->usersModel->find(session()->get('user_id'))) {
+          $data['submitter'] = $submitter;
+        }
+
+        if ($article = $this->articlesModel->find($articleID)) {
           $data['article'] = $article;
-          
-          if($authors = $this->articleAuthorsModel->where('article_id', $articleID)->findAll()) {
+
+          if ($authors = $this->articleAuthorsModel->where('article_id', $articleID)->findAll()) {
             $data['authors'] = $authors;
           }
         }
@@ -69,13 +72,13 @@ class Submit extends BaseController
           'title' => "Step 4. Uploading Supplementary Files"
         ];
 
-        if($filesinfo = $this->articleSupplementaryFilesModel->where('article_id', $articleID)->findAll()) {
+        if ($filesinfo = $this->articleSupplementaryFilesModel->where('article_id', $articleID)->findAll()) {
           $data['filesinfo'] = $filesinfo;
-        } 
-        
+        }
+
         $progress = $this->articlesModel->where('article_id', $articleID)->findColumn('progress');
         $data['article']['progress'] = $progress[0];
-        
+
         break;
 
       case 5:
@@ -83,25 +86,25 @@ class Submit extends BaseController
           'title' => "Step 5. Confirming the Submission"
         ];
 
-        if($mainFile = $this->articleSubmissionFilesModel->where('article_id', $articleID)->orderBy('article_submission_file_id', 'desc')->first()) {
+        if ($mainFile = $this->articleSubmissionFilesModel->where('article_id', $articleID)->orderBy('article_submission_file_id', 'desc')->first()) {
           $data['main_file'] = $mainFile;
         }
 
-        if($suppFile = $this->articleSupplementaryFilesModel->where('article_id', $articleID)->findAll()) {
+        if ($suppFile = $this->articleSupplementaryFilesModel->where('article_id', $articleID)->findAll()) {
           $data['support_file'] = $suppFile;
         }
 
         $progress = $this->articlesModel->where('article_id', $articleID)->findColumn('progress');
         $data['article']['progress'] = $progress[0];
-        
+
         break;
     }
 
     // Mengirim data article_id untuk view
-    if($articleID != 0) $data['article']['article_id'] = $articleID;
+    if ($articleID != 0) $data['article']['article_id'] = $articleID;
 
     // Redirect apabila tidak ditemukan article_id pada database
-    if($page != 1 && $this->articlesModel->where('article_id', $articleID)->first() == NULL) {
+    if ($page != 1 && $this->articlesModel->where('article_id', $articleID)->first() == NULL) {
       return redirect()->to(base_url() . '/author/submit/1');
     }
 

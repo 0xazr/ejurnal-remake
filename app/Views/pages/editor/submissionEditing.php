@@ -113,6 +113,8 @@
 						<a href="#">
 							<?= $copyedit_file['file_name']; ?>
 						</a>
+						&nbsp;&nbsp;&nbsp;
+						<?= $copyedit_file['date_uploaded']; ?>
 					<?php else : ?>
 						File:
 						Request email cannot be sent until file is selected for copyediting in Editor Decision, Review page.

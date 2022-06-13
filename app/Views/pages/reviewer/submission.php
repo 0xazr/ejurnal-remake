@@ -127,7 +127,9 @@
 							<td class="value" width="70%">
 								<?php if (isset($reviewer_response)) : ?>
 									<?php if ($reviewer_response[0] == 1) : ?>
-										<a href="" class="file"><?= $file["file_name"]; ?></a>
+										<?php if (isset($file)) : ?>
+											<a href="" class="file"><?= $file["file_name"]; ?></a>
+										<?php endif; ?>
 									<?php endif; ?>
 								<?php else : ?>
 									None
@@ -142,7 +144,9 @@
 							<td class="value">
 								<?php if (isset($reviewer_response)) : ?>
 									<?php if ($reviewer_response[0] == 1) : ?>
-										<a href="" class="file"><?= $suppfile["file_name"]; ?></a>
+										<?php if (isset($suppfile)) : ?>
+											<a href="" class="file"><?= $suppfile["file_name"]; ?></a>
+										<?php endif; ?>
 									<?php endif; ?>
 								<?php else : ?>
 									None

@@ -37,49 +37,49 @@ $routes->match(['get', 'post'], 'login', 'User::login', ["filter" => "noauth"]);
 // Author routes
 $routes->group("author", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "Author\Home::index");
+    $routes->get('submit/', 'Author\Submit::index');
+    $routes->get('submit/(:num)', 'Author\Submit::index/$1');
+    $routes->get('submit/(:num)/(:num)', 'Author\Submit::index/$1/$2');
+    $routes->add('saveSubmit/(:num)', 'Author\SaveSubmit::index/$1');
+    $routes->add('saveSubmit/(:num)/(:num)', 'Author\SaveSubmit::index/$1/$2');
+    $routes->get('deleteSubmission/(:num)', 'Author\DeleteSubmission::index/$1');
+    $routes->get('removeAuthor/(:num)', 'Author\RemoveAuthor::index/$1');
 });
-
-$routes->get('/author/submit/', 'Author\Submit::index');
-$routes->get('/author/submit/(:num)', 'Author\Submit::index/$1');
-$routes->get('/author/submit/(:num)/(:num)', 'Author\Submit::index/$1/$2');
-$routes->add('/author/saveSubmit/(:num)', 'Author\SaveSubmit::index/$1');
-$routes->add('/author/saveSubmit/(:num)/(:num)', 'Author\SaveSubmit::index/$1/$2');
-$routes->get('/author/deleteSubmission/(:num)', 'Author\DeleteSubmission::index/$1');
-
-$routes->get('/editor/submissions/(:num)', 'Editor\Submissions\Home::index/$1');
-$routes->get('/editor/submissions/assignEditor/(:num)/(:num)', 'Editor\Submissions\AssignEditor::index/$1/$2');
-$routes->get('/editor/submissions/deleteEditAssignment/(:num)', 'Editor\Submissions\DeleteEditAssignment::index/$1');
-$routes->get('/editor/submissionReview/(:num)', 'Editor\SubmissionReview::index/$1');
-$routes->get('/editor/selectReviewer/(:num)', 'Editor\selectReviewer::index/$1');
-$routes->get('/editor/selectReviewer/(:num)/(:num)', 'Editor\selectReviewer::index/$1/$2');
-$routes->get('/editor/viewMetadata/(:num)', 'Editor\viewMetadata::index/$1');
-$routes->get('/editor/submissionEditing/(:num)', 'Editor\submissionEditing::index/$1');
-$routes->add('/editor/notifyReviewer/(:num)/(:num)', 'Editor\notifyReviewer::index/$1/$2');
-$routes->get('/editor/emailEditorDecisionComment/(:num)', 'Editor\emailEditorDecisionComment::index/$1');
-$routes->get('/editor/viewEditorDecisionComments/(:num)', 'Editor\viewEditorDecisionComments::index/$1');
-$routes->get('/editor/deleteComment/(:num)', 'Editor\deleteComment::index/$1');
-$routes->get('/editor/clearReview/(:num)/(:num)', 'Editor\clearReview::index/$1/$2');
-$routes->get('/editor/removeIssue/(:num)', 'Editor\removeIssue::index/$1');
-$routes->add('/editor/scheduleForPublication/(:num)', 'Editor\scheduleForPublication::index/$1');
-$routes->add('/editor/setDatePublished/(:num)', 'Editor\setDatePublished::index/$1');
-$routes->add('/editor/issueToc/(:num)', 'Editor\issueToc::index/$1');
-$routes->add('/editor/updateIssueToc/(:num)', 'Editor\updateIssueToc::index/$1');
-
-$routes->get('/issue/view/(:num)', 'Issue\view::index/$1');
-
-$routes->get('/reviewer/submission/(:num)', 'Reviewer\Submission::index/$1');
-$routes->get('/reviewer/confirmReview/accept/(:num)', 'Reviewer\ConfirmReview::accept/$1');
-$routes->get('/reviewer/confirmReview/decline/(:num)', 'Reviewer\ConfirmReview::decline/$1');
-$routes->get('/reviewer/viewPeerReviewComments/(:num)', 'Reviewer\ViewPeerReviewComments/$1');
 
 // Editor routes
 $routes->group("editor", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "Editor\Home::index");
+    $routes->get('submissions/(:num)', 'Editor\Submissions\Home::index/$1');
+    $routes->get('submissions/assignEditor/(:num)/(:num)', 'Editor\Submissions\AssignEditor::index/$1/$2');
+    $routes->get('submissions/deleteEditAssignment/(:num)', 'Editor\Submissions\DeleteEditAssignment::index/$1');
+    $routes->get('submissionReview/(:num)', 'Editor\SubmissionReview::index/$1');
+    $routes->get('selectReviewer/(:num)', 'Editor\selectReviewer::index/$1');
+    $routes->get('selectReviewer/(:num)/(:num)', 'Editor\selectReviewer::index/$1/$2');
+    $routes->get('viewMetadata/(:num)', 'Editor\viewMetadata::index/$1');
+    $routes->get('submissionEditing/(:num)', 'Editor\submissionEditing::index/$1');
+    $routes->add('notifyReviewer/(:num)/(:num)', 'Editor\notifyReviewer::index/$1/$2');
+    $routes->get('emailEditorDecisionComment/(:num)', 'Editor\emailEditorDecisionComment::index/$1');
+    $routes->get('viewEditorDecisionComments/(:num)', 'Editor\viewEditorDecisionComments::index/$1');
+    $routes->get('deleteComment/(:num)', 'Editor\deleteComment::index/$1');
+    $routes->get('clearReview/(:num)/(:num)', 'Editor\clearReview::index/$1/$2');
+    $routes->get('removeIssue/(:num)', 'Editor\removeIssue::index/$1');
+    $routes->add('scheduleForPublication/(:num)', 'Editor\scheduleForPublication::index/$1');
+    $routes->add('setDatePublished/(:num)', 'Editor\setDatePublished::index/$1');
+    $routes->add('issueToc/(:num)', 'Editor\issueToc::index/$1');
+    $routes->add('updateIssueToc/(:num)', 'Editor\updateIssueToc::index/$1');
+    $routes->add('initiateCopyedit/(:num)', 'Editor\initiateCopyedit::index/$1');
 });
+
 // Reviewer routes
 $routes->group("reviewer", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "Reviewer\Home::index");
+    $routes->get('submission/(:num)', 'Reviewer\Submission::index/$1');
+    $routes->get('confirmReview/accept/(:num)', 'Reviewer\ConfirmReview::accept/$1');
+    $routes->get('confirmReview/decline/(:num)', 'Reviewer\ConfirmReview::decline/$1');
+    $routes->get('viewPeerReviewComments/(:num)', 'Reviewer\ViewPeerReviewComments/$1');
 });
+
+$routes->get('/issue/view/(:num)', 'Issue\view::index/$1');
 $routes->get('logout', 'User::logout');
 
 /*

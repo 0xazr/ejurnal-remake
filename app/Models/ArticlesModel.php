@@ -61,7 +61,8 @@ class ArticlesModel extends Model
         return $this
             ->select()
             ->join('article_authors', 'article_authors.article_id=articles.article_id')
-            ->where('articles.status', 'In Review');
+            // ->where('articles.status', 'In Review');
+            ->like('articles.status', 'In Review');
     }
 
     public function joinArticleIE()

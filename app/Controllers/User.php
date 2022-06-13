@@ -31,6 +31,15 @@ class User extends BaseController
                 if (password_verify($password, $user['password'])) {
                     $this->setUserSession($user);
 
+                    // $this->usersModel->update([
+                    //     'user_id' => session()->get('user_id'),
+                    //     'last_login' => date('Y-m-d H:i:s'),
+                    // ]);
+                    $this->usersModel
+                        ->whereIn('user_id', [session()->get('user_id')])
+                        ->set(['last_login' => date('Y-m-d H:i:s')])
+                        ->update();
+
                     // return redirect()->to(base_url('home'));
                     if ($user['role'] == "author") {
                         return redirect()->to(base_url('author'));

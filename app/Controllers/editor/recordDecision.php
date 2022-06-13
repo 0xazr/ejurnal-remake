@@ -38,6 +38,10 @@ class recordDecision extends BaseController
                     'decision' => "Revisions Required",
                     'date_recorded' => date('Y-m-d')
                 ]);
+                $this->articlesModel->save([
+                    'article_id' => $article_id,
+                    'status' => "In Review : Revisions Required",
+                ]);
                 return redirect()->to(base_url('/editor/submissionReview/' . $article_id));
                 // break;
 
@@ -48,6 +52,10 @@ class recordDecision extends BaseController
                     'decision' => "Resubmit for Review",
                     'date_recorded' => date('Y-m-d')
                 ]);
+                $this->articlesModel->save([
+                    'article_id' => $article_id,
+                    'status' => "In Review : Resubmit for Review",
+                ]);
                 return redirect()->to(base_url('/editor/submissionReview/' . $article_id));
                 // break;
 
@@ -57,6 +65,10 @@ class recordDecision extends BaseController
                     'editor_id' => session()->get('user_id'),
                     'decision' => "Decline Submission",
                     'date_recorded' => date('Y-m-d')
+                ]);
+                $this->articlesModel->save([
+                    'article_id' => $article_id,
+                    'status' => "In Editing",
                 ]);
                 return redirect()->to(base_url('/editor/submissionReview/' . $article_id));
                 // break;

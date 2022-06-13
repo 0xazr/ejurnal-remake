@@ -13,23 +13,11 @@ class UserSeeder extends Seeder
 
         $user->insertBatch([
             [
-                "username" => "author",
-                "role" => "author",
-                "email" => "author@gmail.com",
-                "password" => password_hash("author", PASSWORD_BCRYPT)
+                "username" => "admin",
+                "role" => "admin",
+                "email" => "admin@gmail.com",
+                "password" => password_hash("admin", PASSWORD_BCRYPT)
             ],
-            [
-                "username" => "editor",
-                "role" => "editor",
-                "email" => "editor@gmail.com",
-                "password" => password_hash("editor", PASSWORD_BCRYPT)
-            ],
-            [
-                "username" => "reviewer",
-                "role" => "reviewer",
-                "email" => "reviewer@gmail.com",
-                "password" => password_hash("reviewer", PASSWORD_BCRYPT)
-            ]
         ]);
     }
 }

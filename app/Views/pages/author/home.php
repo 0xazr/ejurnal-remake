@@ -52,8 +52,13 @@
 						<td>ART</td>
 						<td><?= $author['first_name'] ?></td>
 						<td><a href="<?= base_url(); ?>/author/submit/<?= $article['progress'] . '/' . $article['article_id']; ?>" class="action"><?= (isset($article['title'])) ? $article['title'] : 'No Title' ?></a></td>
-						<td align="right"><?= $article['status'] ?><br /><a href="<?= base_url(); ?>/author/deleteSubmission/<?= $artile['article_id']; ?>" class="action" onclick="confirm('Are you sure you want to delete this incomplete submission?')">Delete</a></td>
-
+						<?php if ($article['status'] == "Incomplete") : ?>
+							<td align="right"><?= $article['status'] ?><br /><a href="<?= base_url(); ?>/author/deleteSubmission/<?= $article['article_id']; ?>" class="action" onclick="confirm('Are you sure you want to delete this incomplete submission?')">Delete</a></td>
+						<?php elseif ($article['status'] == "Waiting Assignment") : ?>
+							<td align="right"><?= $article['status'] ?></td>
+						<?php else : ?>
+							<td align="right"><a href="<?= base_url(); ?>/author/submissionReview/<?= $article['article_id']; ?>" class="action"><?= $article['status'] ?></a></td>
+						<?php endif; ?>
 					</tr>
 				<?php endforeach; ?>
 			<?php else : ?>

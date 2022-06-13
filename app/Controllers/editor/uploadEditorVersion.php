@@ -52,11 +52,11 @@ class uploadEditorVersion extends BaseController
       ];
 
       $data["file"] = [
-        'path' => 'uploads/reviewer/' . $articleID . '/' . $fileID . '/' . $articleID . '-' . $fileID . '-' . $count . '-RV.pdf'
+        'path' => 'uploads/editor/' . $articleID . '/' . $fileID . '/' . $articleID . '-' . $fileID . '-' . $count . '-RV.pdf'
       ];
 
       if ($this->articleRevisionFilesModel->update($articleRevisionFileID, $data['article_revision_file']) && $this->filesModel->update($fileID, $data['file'])) {
-        $file->store('reviewer/' . $articleID . '/' . $fileID, $data['article_revision_file']['file_name']);
+        $file->store('editor/' . $articleID . '/' . $fileID, $data['article_revision_file']['file_name']);
       }
 
       return redirect()->to('editor/submissionReview/' . $articleID);

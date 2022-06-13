@@ -81,6 +81,14 @@ class SubmissionReview extends BaseController
             $data['comment_from_reviewer'] = $reviewer_to_editor;
         }
 
+        if ($recommendation = $this->reviewAssignmentsModel->where('article_id', $article_id)->first()) {
+            $data['recommendation'] = $recommendation;
+        }
+
+        if ($copyedit_file = $this->articleCopyedFilesModel->where('article_id', $article_id)->first()) {
+            $data['copyedit_file'] = $copyedit_file;
+        }
+
         $data['article'] = $this->articlesModel->joinArticleAuthorFiles($article_id)->first();
         $data['supplementary_files'] = $this->articleSupplementaryFilesModel->where('article_id', $article_id)->first();
 
