@@ -8,8 +8,14 @@ class Home extends BaseController
 {
     public function index()
     {
-        $data['articles'] = $this->articlesModel->where('submitter_id', session()->get('user_id'))->findAll();
-        $data['author'] = $this->usersModel->find(session()->get('user_id'));
+        $articles = $this->articlesModel->where('submitter_id', session()->get('user_id'))->findAll();
+
+        foreach ($articles as $article) {
+            $authors[$article['article_id']] = $this->articleAuthorsModel->where('article_id', $article['article_id'])->findAll();
+        }
+
+        $data['articles'] = $articles;
+        $data['authors'] = $authors;
         // dd($data);
         return view('pages/author/home', $data);
     }

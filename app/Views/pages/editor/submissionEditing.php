@@ -84,8 +84,8 @@
 				<td width="26%">Initial Copyedit</td>
 				<td>
 					<?php if (isset($copyedit_file)) : ?>
-						<?php if (isset($date_request_step_1)) : ?>
-							<?= $date_request_step_1['date_request']; ?>
+						<?php if (isset($date_step_1['date_request'])) : ?>
+							<?= $date_step_1['date_request']; ?>
 						<?php else : ?>
 							<a href="<?= base_url(); ?>/editor/initiateCopyedit/<?= $article['article_id']; ?>">Initiate</a>
 						<?php endif; ?>
@@ -96,8 +96,8 @@
 					N/A
 				</td>
 				<td>
-					<?php if (isset($date_complete_step_1)) : ?>
-						<?= $date_complete_step_1['date_complete']; ?>
+					<?php if (isset($date_step_1['date_complete'])) : ?>
+						<?= $date_step_1['date_complete']; ?>
 					<?php else : ?>
 						<a href="<?= base_url(); ?>/editor/completeCopyedit/<?= $article['article_id']; ?>" class="action">Complete</a>
 					<?php endif; ?>
@@ -128,10 +128,14 @@
 				<td>2.</td>
 				<td>Author Copyedit</td>
 				<td>
-					<?php if (isset($notifyAuthorCopyedit)) : ?>
-						<a href="<?= base_url(); ?>/editor/notifyAuthorCopyedit/<?= $article['article_id']; ?>">
-							<img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/mail.gif" width="16" height="14" alt="Mail" />
-						</a>
+					<?php if (isset($date_step_1['date_complete'])) : ?>
+						<?php if (isset($date_step_2['date_request'])) : ?>
+							<?= $date_step_2['date_request']; ?>
+						<?php else : ?>
+							<a href="<?= base_url(); ?>/editor/notifyAuthorCopyedit/<?= $article['article_id']; ?>">
+								<img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/mail.gif" width="16" height="14" alt="Mail" />
+							</a>
+						<?php endif; ?>
 					<?php else : ?>
 						<img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/mail_disabled.gif" width="16" height="14" alt="Mail" />
 					<?php endif; ?>
@@ -140,12 +144,16 @@
 					&mdash;
 				</td>
 				<td>
-					&mdash;
+					<?php if (isset($date_step_2['date_complete'])) : ?>
+						<?= $date_step_2['date_complete']; ?>
+					<?php else : ?>
+						&mdash;
+					<?php endif; ?>
 				</td>
 				<td>
-					<?php if (isset($thankAuthorCopyedit)) : ?>
-						<?php if (isset($date_request_step_2)) : ?>
-							<?= $date_request_step_2['date_request']; ?>
+					<?php if (isset($date_step_1['date_complete'])) : ?>
+						<?php if (isset($date_step_2['date_acknowledge'])) : ?>
+							<?= $date_step_2['date_acknowledge']; ?>
 						<?php else : ?>
 							<a href="<?= base_url(); ?>/editor/thankAuthorCopyedit/<?= $article['article_id']; ?>">
 								<img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/mail.gif" width="16" height="14" alt="Mail" />
@@ -160,8 +168,12 @@
 				<td>&nbsp;</td>
 				<td colspan="5">
 					File:
-					<?php if (isset($authorCopyeditFile)) : ?>
-						<?= $authorCopyeditFile['file_name']; ?>
+					<?php if (isset($file_step_2)) : ?>
+						<a href="#">
+							<?= $file_step_2['file_name']; ?>
+						</a>
+						&nbsp;&nbsp;&nbsp;
+						<?= $file_step_2['date_uploaded']; ?>
 					<?php else : ?>
 					<?php endif; ?>
 				</td>
@@ -173,14 +185,18 @@
 				<td>3.</td>
 				<td>Final Copyedit</td>
 				<td>
+					<?php if (isset($date_step_2['date_complete'])) : ?>
+						<?= $date_step_2['date_complete']; ?>
+					<?php else : ?>
 
+					<?php endif; ?>
 				</td>
 				<td>
 					N/A
 				</td>
 				<td>
-					<?php if (isset($date_complete_step_3)) : ?>
-						<?= $date_complete_step_3['date_complete']; ?>
+					<?php if (isset($date_step_3['date_complete'])) : ?>
+						<?= $date_step_3['date_complete']; ?>
 					<?php else : ?>
 						<a href="<?= base_url(); ?>/editor/completeFinalCopyedit/<?= $article['article_id']; ?>" class="action">Complete</a>
 					<?php endif; ?>
@@ -193,23 +209,39 @@
 				<td>&nbsp;</td>
 				<td colspan="5">
 					File:
-					<?php if (isset($finalCopyedit)) : ?>
-						<?= $finalCopyedit['file_name']; ?>
+					<?php if (isset($file_step_3['file_name'])) : ?>
+						<a href="#">
+							<?= $file_step_3['file_name']; ?>
+						</a>
+						<?= $file_step_3['date_uploaded']; ?>
 					<?php else : ?>
+						&nbsp;
 					<?php endif; ?>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="6" class="separator">&nbsp;</td>
+				<td colspan="6" class="separator"></td>
 			</tr>
 		</table>
 
 		<form method="post" action="<?= base_url(); ?>/editor/uploadCopyeditVersion" enctype="multipart/form-data">
 			<input type="hidden" name="articleId" value="<?= $article['article_id']; ?>" />
 			Upload file to
-			<input type="radio" name="copyeditStage" id="copyeditStageInitial" value="initial" checked="checked" /><label for="copyeditStageInitial">Step 1</label>,
-			<input type="radio" name="copyeditStage" id="copyeditStageAuthor" value="author" disabled="disabled" /><label for="copyeditStageAuthor" class="disabled">Step 2</label>, or
-			<input type="radio" name="copyeditStage" id="copyeditStageFinal" value="final" disabled="disabled" /><label for="copyeditStageFinal" class="disabled">Step 3</label>
+			<?php if (isset($date_step_1['date_complete'])) : ?>
+				<?php if (isset($date_step_2['date_complete'])) : ?>
+					<input type="radio" name="copyeditStage" id="copyeditStageInitial" value="initial" /><label for="copyeditStageInitial">Step 1</label>,
+					<input type="radio" name="copyeditStage" id="copyeditStageAuthor" value="author" checked="checked" /><label for="copyeditStageAuthor">Step 2</label>, or
+					<input type="radio" name="copyeditStage" id="copyeditStageFinal" value="final" checked="checked" /><label for="copyeditStageFinal">Step 3</label>
+				<?php else : ?>
+					<input type="radio" name="copyeditStage" id="copyeditStageInitial" value="initial" /><label for="copyeditStageInitial">Step 1</label>,
+					<input type="radio" name="copyeditStage" id="copyeditStageAuthor" value="author" checked="checked" /><label for="copyeditStageAuthor">Step 2</label>, or
+					<input type="radio" name="copyeditStage" id="copyeditStageFinal" value="final" disabled="disabled" /><label for="copyeditStageFinal" class="disabled">Step 3</label>
+				<?php endif; ?>
+			<?php else : ?>
+				<input type="radio" name="copyeditStage" id="copyeditStageInitial" value="initial" checked="checked" /><label for="copyeditStageInitial">Step 1</label>,
+				<input type="radio" name="copyeditStage" id="copyeditStageAuthor" value="author" disabled="disabled" /><label for="copyeditStageAuthor" class="disabled">Step 2</label>, or
+				<input type="radio" name="copyeditStage" id="copyeditStageFinal" value="final" disabled="disabled" /><label for="copyeditStageFinal" class="disabled">Step 3</label>
+			<?php endif; ?>
 			<input type="file" name="file_name" size="10" class="uploadField" />
 			<input type="submit" value="Upload" class="button" />
 		</form>
@@ -371,7 +403,11 @@
 			<tr valign="top">
 				<td colspan="6">
 					File:&nbsp;&nbsp;&nbsp;&nbsp;
-					None (Upload final copyedit version as Layout Version prior to sending request)
+					<?php if (isset($layout_version)) : ?>
+						<a class="file" href="<?= base_url('/downloadFile') . $layout_version['file_id']; ?>"><?= $layout_version['file_name']; ?></a>&nbsp;&nbsp;<?= $layout_version['date_uploaded']; ?>
+					<?php else : ?>
+						None (Upload final copyedit version as Layout Version prior to sending request)
+					<?php endif; ?>
 				</td>
 			</tr>
 			<tr>
@@ -385,9 +421,24 @@
 				<td class="heading">Action</td>
 				<td class="heading">Views</td>
 			</tr>
-			<tr>
-				<td colspan="7" class="nodata">None</td>
-			</tr>
+			<?php if (isset($galley_format)) : ?>
+				<?php for ($index = 0; $index < count($galley_format); $index++) : ?>
+					<tr>
+						<td width="2%"><?= $index + 1; ?></td>
+						<td width="26%">PDF &nbsp; <a href="https://iptek.its.ac.id/index.php/itj/editor/proofGalley/12517/6786" class="action">View Proof</a></td>
+						<td colspan="2"><a href="<?= base_url('/editor/downloadFile/' . $galley_format[$index]['file_id']); ?>" class="file"><?= $galley_format[$index]['file_name']; ?></a>&nbsp;&nbsp;<?= $galley_format[$index]['date_uploaded']; ?></td>
+						<td><a href="" class="plain">&uarr;</a> <a href="" class="plain">&darr;</a></td>
+						<td>
+							<a href="https://iptek.its.ac.id/index.php/itj/editor/editGalley/12517/6786" class="action">Edit</a>&nbsp;|&nbsp;<a href="<?= base_url('/editor/deleteGalley/' . $galley_format[$index]['article_layout_file_id']); ?>" onclick="return confirm('Are you sure you want to permanently delete this galley?')" class="action">Delete</a>
+						</td>
+						<td>0</td>
+					</tr>
+				<?php endfor; ?>
+			<?php else : ?>
+				<tr>
+					<td colspan="7" class="nodata">None</td>
+				</tr>
+			<?php endif; ?>
 			<tr>
 				<td colspan="7" class="separator">&nbsp;</td>
 			</tr>
@@ -397,9 +448,24 @@
 				<td width="16%" class="heading">Order</td>
 				<td width="16%" colspan="2" class="heading">Action</td>
 			</tr>
-			<tr>
-				<td colspan="7" class="nodata">None</td>
-			</tr>
+			<?php if (isset($supp_file)) : ?>
+				<?php for ($index = 0; $index < count($supp_file); $index++) : ?>
+					<tr>
+						<td width="2%"><?= $index + 1; ?></td>
+						<td width="26%">PDF &nbsp; <a href="https://iptek.its.ac.id/index.php/itj/editor/proofGalley/12517/6786" class="action">View Proof</a></td>
+						<td colspan="2"><a href="<?= base_url('/editor/downloadFile/' . $supp_file[$index]['file_id']); ?>" class="file"><?= $supp_file[$index]['file_name']; ?></a>&nbsp;&nbsp;<?= $supp_file[$index]['date_uploaded']; ?></td>
+						<td><a href="" class="plain">&uarr;</a> <a href="" class="plain">&darr;</a></td>
+						<td>
+							<a href="https://iptek.its.ac.id/index.php/itj/editor/editSuppFile/12517/6786" class="action">Edit</a>&nbsp;|&nbsp;<a href="<?= base_url('/editor/deleteSuppFile/' . $supp_file[$index]['article_layout_file_id']); ?>" onclick="return confirm('Are you sure you want to permanently delete this galley?')" class="action">Delete</a>
+						</td>
+						<td>0</td>
+					</tr>
+				<?php endfor; ?>
+			<?php else : ?>
+				<tr>
+					<td colspan="7" class="nodata">None</td>
+				</tr>
+			<?php endif; ?>
 			<tr>
 				<td colspan="7" class="separator">&nbsp;</td>
 			</tr>

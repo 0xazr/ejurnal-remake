@@ -44,6 +44,10 @@ $routes->group("author", ["filter" => "auth"], function ($routes) {
     $routes->add('saveSubmit/(:num)/(:num)', 'Author\SaveSubmit::index/$1/$2');
     $routes->get('deleteSubmission/(:num)', 'Author\DeleteSubmission::index/$1');
     $routes->get('removeAuthor/(:num)', 'Author\RemoveAuthor::index/$1');
+    $routes->get('submission/(:num)', 'Author\Submission::index/$1');
+    $routes->get('submissionReview/(:num)', 'Author\submissionReview::index/$1');
+    $routes->get('submissionEditing/(:num)', 'Author\submissionEditing::index/$1');
+    $routes->get('completeAuthorCopyedit/(:num)', 'Author\completeAuthorCopyedit::index/$1');
 });
 
 // Editor routes
@@ -68,6 +72,12 @@ $routes->group("editor", ["filter" => "auth"], function ($routes) {
     $routes->add('issueToc/(:num)', 'Editor\issueToc::index/$1');
     $routes->add('updateIssueToc/(:num)', 'Editor\updateIssueToc::index/$1');
     $routes->add('initiateCopyedit/(:num)', 'Editor\initiateCopyedit::index/$1');
+    $routes->add('completeCopyedit/(:num)', 'Editor\completeCopyedit::index/$1');
+    $routes->add('notifyAuthorCopyedit/(:num)', 'Editor\notifyAuthorCopyedit::index/$1');
+    $routes->add('thankAuthorCopyedit/(:num)', 'Editor\thankAuthorCopyedit::index/$1');
+    $routes->get('completeFinalCopyedit/(:num)', 'Editor\completeFinalCopyedit::index/$1');
+    $routes->get('deleteGalley/(:num)', 'Editor\DeleteGalley::index/$1');
+    $routes->get('deleteSuppFile/(:num)', 'Editor\DeleteSuppFile::index/$1');
 });
 
 // Reviewer routes
@@ -77,6 +87,12 @@ $routes->group("reviewer", ["filter" => "auth"], function ($routes) {
     $routes->get('confirmReview/accept/(:num)', 'Reviewer\ConfirmReview::accept/$1');
     $routes->get('confirmReview/decline/(:num)', 'Reviewer\ConfirmReview::decline/$1');
     $routes->get('viewPeerReviewComments/(:num)', 'Reviewer\ViewPeerReviewComments/$1');
+});
+
+// Admin routes
+$routes->group("admin", ["filter" => "auth"], function ($routes) {
+    $routes->get("/", "Admin\Home::index");
+    $routes->get('users', 'Admin\Users::index');
 });
 
 $routes->get('/issue/view/(:num)', 'Issue\view::index/$1');

@@ -27,17 +27,21 @@ class Noauth implements FilterInterface
     {
         if (session()->get('isLoggedIn')) {
 
-			if (session()->get('role') == "author") {
-				return redirect()->to(base_url('author'));
-			}
+            if (session()->get('role') == "author") {
+                return redirect()->to(base_url('author'));
+            }
 
-			if (session()->get('role') == "editor") {
-				return redirect()->to(base_url('editor'));
-			}
+            if (session()->get('role') == "editor") {
+                return redirect()->to(base_url('editor'));
+            }
 
             if (session()->get('role') == "reviewer") {
-				return redirect()->to(base_url('reviewer'));
-			}
+                return redirect()->to(base_url('reviewer'));
+            }
+
+            if (session()->get('role') == "admin") {
+                return redirect()->to(base_url('admin'));
+            }
         }
     }
 

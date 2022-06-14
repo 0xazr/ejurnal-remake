@@ -351,23 +351,21 @@
                      <label for="authors-0-firstName">
                         First Name *</label>
                   </td>
-                  <td width="80%" class="value"><input type="text" class="textField" name="authors[<?= $index; ?>][firstName]" id="authors-0-firstName" value="<?php if (isset($submitter['first_name'])) echo $submitter['first_name'];
-                                                                                                                                                               else echo 'First Name'; ?>" size="20" maxlength="40" /></td>
+                  <td width="80%" class="value"><input type="text" class="textField" name="authors[<?= $index; ?>][firstName]" id="authors-0-firstName" value="" size="20" maxlength="40" /></td>
                </tr>
                <tr valign="top">
                   <td width="20%" class="label">
                      <label for="authors-0-middleName">
                         Middle Name </label>
                   </td>
-                  <td width="80%" class="value"><input type="text" class="textField" name="authors[<?= $index; ?>][middleName]" id="authors-0-middleName" value="<?php if (isset($submitter['middle_name'])) echo $submitter['middle_name'] ?>" size="20" maxlength="40" /></td>
+                  <td width="80%" class="value"><input type="text" class="textField" name="authors[<?= $index; ?>][middleName]" id="authors-0-middleName" value="" size="20" maxlength="40" /></td>
                </tr>
                <tr valign="top">
                   <td width="20%" class="label">
                      <label for="authors-0-lastName">
                         Last Name *</label>
                   </td>
-                  <td width="80%" class="value"><input type="text" class="textField" name="authors[<?= $index; ?>][lastName]" id="authors-0-lastName" value="<?php if (isset($submitter['last_name'])) echo $submitter['last_name'];
-                                                                                                                                                               else echo 'Last Name'; ?>" size="20" maxlength="90" /></td>
+                  <td width="80%" class="value"><input type="text" class="textField" name="authors[<?= $index; ?>][lastName]" id="authors-0-lastName" value="" size="20" maxlength="90" /></td>
                </tr>
                <tr valign="top">
                   <td width="20%" class="label">
@@ -381,7 +379,7 @@
                      <label for="authors-0-url">
                         URL </label>
                   </td>
-                  <td class="value"><input type="text" name="authors[<?= $index; ?>][url]" id="authors-0-url" value="<?php if (isset($author['author_id'])) echo $author['url']; ?>" size="30" maxlength="255" class="textField" /></td>
+                  <td class="value"><input type="text" name="authors[<?= $index; ?>][url]" id="authors-0-url" value="" size="30" maxlength="255" class="textField" /></td>
                </tr>
                <tr valign="top">
                   <td width="20%" class="label">
@@ -389,7 +387,7 @@
                         Affiliation </label>
                   </td>
                   <td width="80%" class="value">
-                     <textarea name="authors[<?= $index; ?>][affiliation]" class="textArea" id="authors-0-affiliation" rows="5" cols="40"><?php if (isset($author['author_id'])) echo $author['affiliation']; ?></textarea><br />
+                     <textarea name="authors[<?= $index; ?>][affiliation]" class="textArea" id="authors-0-affiliation" rows="5" cols="40"></textarea><br />
                      <span class="instruct">(Your institution, e.g. "Simon Fraser University")</span>
                   </td>
                </tr>
@@ -656,7 +654,7 @@
                         Bio Statement </label>
                      <br />(E.g., department and rank)
                   </td>
-                  <td width="80%" class="value"><textarea name="authors[<?= $index; ?>][biography]" class="textArea" id="authors-0-biography" rows="5" cols="40"><?php if (isset($author['author_id'])) echo $author['bio']; ?></textarea></td>
+                  <td width="80%" class="value"><textarea name="authors[<?= $index; ?>][biography]" class="textArea" id="authors-0-biography" rows="5" cols="40"></textarea></td>
                </tr>
             </table>
             <p><input type="submit" class="button" name="addAuthor" value="Add Author" /></p>

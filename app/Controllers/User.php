@@ -52,6 +52,11 @@ class User extends BaseController
                     } else if ($user['role'] == "reviewer") {
                         return redirect()->to(base_url('reviewer'));
                     }
+
+                    // jika role = admin
+                    else if ($user['role'] == "admin") {
+                        return redirect()->to(base_url('admin'));
+                    }
                 } else {
                     if (!password_verify($password, $user['password'])) {
                         session()->setFlashdata('error', 'Password salah');

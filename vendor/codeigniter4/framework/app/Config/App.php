@@ -24,6 +24,7 @@ class App extends BaseConfig
      * @var string
      */
     public $baseURL = 'http://10.15.40.23/ejurnal-remake/public';
+    //public $baseURL = 'http://localhost:8080/';
 
     /**
      * --------------------------------------------------------------------------

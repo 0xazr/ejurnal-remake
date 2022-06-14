@@ -97,6 +97,7 @@ class Submit extends BaseController
         $progress = $this->articlesModel->where('article_id', $articleID)->findColumn('progress');
         $data['article']['progress'] = $progress[0];
 
+        // dd($data['support_file']);
         break;
     }
 

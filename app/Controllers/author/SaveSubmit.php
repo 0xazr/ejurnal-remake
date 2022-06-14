@@ -112,7 +112,7 @@ class SaveSubmit extends BaseController
               $authorID = $author['authorId'];
             }
           }
-          return redirect()->to(base_url() . '/author/submit/4/' . $articleID);
+          return redirect()->back()->withInput();
         } else if (isset($post['submitArticle'])) {
           $authors = $post['authors'];
 
@@ -196,7 +196,8 @@ class SaveSubmit extends BaseController
             'file_name' => $articleID . '-' . $fileID . '-' . $count . '-SP.pdf',
             'original_file_name' => $file->getClientName(),
             'file_size' => $file->getSizeByUnit('kb'),
-            'file_address' => 'uploads/author/' . $articleID . '/' . $fileID . '/' . $articleID . '-' . $fileID . '-' . $count . '-SP.pdf'
+            'file_address' => 'uploads/author/' . $articleID . '/' . $fileID . '/' . $articleID . '-' . $fileID . '-' . $count . '-SP.pdf',
+            'uploader_id' => session()->get('user_id')
           ];
 
           if ($this->articleSupplementaryFilesModel->update($articleSupplementaryFileID, $data['article_supplementary_file'])) {

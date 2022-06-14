@@ -30,7 +30,7 @@ class UploadLayoutFile extends BaseController
 
     if ($file != NULL) {
       $post = $this->request->getPost();
-      $articleID = $post["articleId"];
+      $articleID = $post["article_id"];
 
       $data['article_layout_file']['article_id'] = $articleID;
 
@@ -38,38 +38,56 @@ class UploadLayoutFile extends BaseController
         'path' => ''
       ]);
 
-      $this->articleCopyedFilesModel->insert($data['article_layout_file']);
-
       $fileID = $this->filesModel->getInsertID();
-      $articleCopyeditFileID = $this->articleCopyedFilesModel->getInsertID();
-
-      $count = count($this->articleCopyedFilesModel->where('article_id', $articleID)->findAll());
 
       $data['article_layout_file'] = [
         'file_id' => $fileID,
-        'layoutFile' => $articleID . '-' . $fileID . '-' . $count . '-ED.pdf',
-        'original_layoutFile' => $file->getClientName(),
+        'original_file_name' => $file->getClientName(),
         'file_size' => $file->getSizeByUnit('kb'),
+        'date_uploaded' => date('Y-m-d'),
         'uploader_id' => session()->get('user_id')
       ];
 
       if ($post['layoutFileType'] == "submission") {
-        $data['article_layout_file']['type'] = 1;
+        $this->articleLayoutFilesModel->insert([
+          'article_id' => $articleID,
+          'type' => 1
+        ]);
+
+        $count = count($this->articleLayoutFilesModel->where('article_id', $articleID)->where('type', 1)->findAll());
+
+        $data['article_layout_file']['file_name'] = $articleID . '-' . $fileID . '-' . $count . '-LE.pdf';
       } elseif ($post['layoutFileType'] == "galley") {
-        $data['article_layout_file']['type'] = 2;
+        $this->articleLayoutFilesModel->insert([
+          'article_id' => $articleID,
+          'type' => 2
+        ]);
+
+        $count = count($this->articleLayoutFilesModel->where('article_id', $articleID)->where('type', 2)->findAll());
+
+        $data['article_layout_file']['file_name'] = $articleID . '-' . $fileID . '-' . $count . '-PB.pdf';
       } elseif ($post['layoutFileType'] == "supp") {
-        $data['article_layout_file']['type'] = 3;
+        $this->articleLayoutFilesModel->insert([
+          'article_id' => $articleID,
+          'type' => 3
+        ]);
+
+        $count = count($this->articleLayoutFilesModel->where('article_id', $articleID)->where('type', 3)->findAll());
+
+        $data['article_layout_file']['file_name'] = $articleID . '-' . $fileID . '-' . $count . '-SP.pdf';
       } else {
         return redirect()->back();
       }
 
+      $articleLayoutFileID = $this->articleLayoutFilesModel->getInsertID();
+
       $data['file'] = [
-        'path' => 'uploads/editor/' . $articleID . '/' . $fileID . '/' . $articleID . '-' . $fileID . '-' . $count . '-ED.pdf'
+        'path' => 'uploads/editor/' . $data['article_layout_file']['file_name']
       ];
 
 
-      if ($this->articleCopyedFilesModel->update($articleCopyeditFileID, $data['article_layout_file']) && $this->filesModel->update($fileID, $data['file'])) {
-        $file->store('editor/' . $articleID . '/' . $fileID, $data['article_layout_file']['layoutFile']);
+      if ($this->articleLayoutFilesModel->update($articleLayoutFileID, $data['article_layout_file']) && $this->filesModel->update($fileID, $data['file'])) {
+        $file->store('editor/' . $articleID . '/' . $fileID, $data['article_layout_file']['file_name']);
       }
       return redirect()->to(base_url() . '/editor/submissionEditing/' . $articleID);
     }

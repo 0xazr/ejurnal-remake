@@ -52,7 +52,7 @@ class ArticlesModel extends Model
     {
         return $this
             ->select()
-            ->join('article_authors', 'article_authors.article_id=articles.article_id')
+            ->join('article_authors', 'article_authors.article_id = articles.article_id')
             ->where('articles.status', 'Waiting Assignment');
     }
 

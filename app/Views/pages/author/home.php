@@ -50,12 +50,35 @@
 						<td><?= $article['article_id']; ?></td>
 						<td><?= $article['date_created']; ?></td>
 						<td>ART</td>
-						<td><?= $author['first_name'] ?></td>
-						<td><a href="<?= base_url(); ?>/author/submit/<?= $article['progress'] . '/' . $article['article_id']; ?>" class="action"><?= (isset($article['title'])) ? $article['title'] : 'No Title' ?></a></td>
+						<td>
+							<?php for ($i = 0; $i < count($authors[$article['article_id']]); $i++) :  ?>
+								<?php if (count($authors[$article['article_id']]) == 1) : ?>
+									<?= $authors[$article['article_id']][$i]['first_name']; ?>
+								<?php elseif ($i < count($authors[$article['article_id']]) - 1) : ?>
+									<?= $authors[$article['article_id']][$i]['first_name'] . ', '; ?>
+								<?php elseif ($i == count($authors[$article['article_id']]) - 1) : ?>
+									<?= $authors[$article['article_id']][$i]['first_name']; ?>
+								<?php endif; ?>
+							<?php endfor; ?>
+						</td>
+						<td>
+							<?php if ($article['status'] == "Incomplete") : ?>
+								<a href="<?= base_url(); ?>/author/submit/<?= $article['progress'] . '/' . $article['article_id']; ?>" class="action"><?= (isset($article['title'])) ? $article['title'] : 'No Title' ?></a>
+							<?php else : ?>
+								<a href="<?= base_url(); ?>/author/submission/<?= $article['article_id']; ?>" class="action"><?= (isset($article['title'])) ? $article['title'] : 'No Title' ?></a>
+							<?php endif; ?>
+						</td>
 						<?php if ($article['status'] == "Incomplete") : ?>
-							<td align="right"><?= $article['status'] ?><br /><a href="<?= base_url(); ?>/author/deleteSubmission/<?= $article['article_id']; ?>" class="action" onclick="confirm('Are you sure you want to delete this incomplete submission?')">Delete</a></td>
+							<td align="right">
+								<?= $article['status'] ?><br />
+								<a href="<?= base_url(); ?>/author/deleteSubmission/<?= $article['article_id']; ?>" class="action" onclick="confirm('Are you sure you want to delete this incomplete submission?')">Delete</a>
+							</td>
 						<?php elseif ($article['status'] == "Waiting Assignment") : ?>
 							<td align="right"><?= $article['status'] ?></td>
+						<?php elseif ($article['status'] == "In Review") : ?>
+							<td align="right"><a href="<?= base_url(); ?>/author/submissionReview/<?= $article['article_id']; ?>" class="action"><?= $article['status'] ?></a></td>
+						<?php elseif ($article['status'] == "In Editing") : ?>
+							<td align="right"><a href="<?= base_url(); ?>/author/submissionEditing/<?= $article['article_id']; ?>" class="action"><?= $article['status'] ?></a></td>
 						<?php else : ?>
 							<td align="right"><a href="<?= base_url(); ?>/author/submissionReview/<?= $article['article_id']; ?>" class="action"><?= $article['status'] ?></a></td>
 						<?php endif; ?>
