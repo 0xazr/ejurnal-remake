@@ -18,7 +18,7 @@
 
 
   <ul class="menu">
-    <li><a href="<?= base_url(); ?>/author/submissions/<?= $article['article_id']; ?>">Summary</a></li>
+    <li><a href="<?= base_url(); ?>/author/submission/<?= $article['article_id']; ?>">Summary</a></li>
     <li class="current"><a href="<?= base_url(); ?>/author/submissionReview/<?= $article['article_id']; ?>">Review</a></li>
     <li><a href="<?= base_url(); ?>/author/submissionEditing/<?= $article['article_id']; ?>">Editing</a></li>
   </ul>

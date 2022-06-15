@@ -125,3 +125,10 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
+# Exlclude $baseURL
+app/Config/App.php
+app/Controllers/admin/*
+app/Controllers/user/*
+
+app/Views/pages/admin/*
+app/Views/pages/user/*

@@ -57,8 +57,7 @@
 
   <h3>Table of Contents</h3>
 
-  <form method="post" action="<?= base_url(); ?>/editor/updateIssueToc/<?= $issue_id; ?>" onsubmit="return confirm('Save changes to table of contents?')">
-
+  <form method="post" action="<?= base_url(); ?>/editor/<?= (isset($havePublish)) ? 'unPublishIssueToc' : 'updateIssueToc' ?>/<?= $issue_id; ?>" onsubmit="return confirm('Save changes to table of contents?')">
 
     <h4>Articles&uarr; &darr;</h4>
 
@@ -129,7 +128,7 @@
     <?php if (isset($havePublish)) : ?>
       <input type="submit" value="Unpublish Issue" onclick="confirmAction('<?= base_url(); ?>/editor/publishIssue/790', 'Are you sure you want to publish the new issue?')" class="button" />
     <?php else : ?>
-      <input type="submit" value="Publish Issue" onclick="confirmAction('<?= base_url(); ?>/editor/publishIssue/790', 'Are you sure you want to publish the new issue?')" class="button" />
+      <input type="submit" value="Publish Issue" onclick="confirmAction('<?= base_url(); ?>/editor/updateIssueToc/<?= $issue_id; ?>', 'Are you sure you want to publish the new issue?')" class="button" />
     <?php endif; ?>
   </form>
 

@@ -54,10 +54,10 @@
 
                      <ul class="list_style_side">
                         <li>
-                           <a href="#">My Journals</a>
+                           <a href="<?= base_url('/' . session()->get('role')); ?>">My Journals</a>
                         </li>
                         <li>
-                           <a href="#">My Profile</a>
+                           <a href="<?= base_url('/user/profile'); ?>">My Profile</a>
                         </li>
                         <li>
                            <a href="<?= base_url(); ?>/User/logout">Log Out</a>

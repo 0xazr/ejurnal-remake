@@ -39,30 +39,6 @@
   <?php endif; ?>
 
 
-  <table class="tocArticle" width="100%">
-    <tr valign="top">
-
-
-
-
-      <td class="tocTitle"><a href="<?= base_url(); ?>/article/view/13087">as</a></td>
-      <td class="tocGalleys">
-        <a href="<?= base_url(); ?>/article/view/13087/6744" class="file">PDF</a>
-        <a href="<?= base_url(); ?>/article/view/13087/6745" class="file">PDF</a>
-        <a href="<?= base_url(); ?>/article/view/13087/6746" class="file">Remote</a>
-
-      </td>
-    </tr>
-    <tr>
-      <td class="tocAuthors">
-        Cyntia Niani </td>
-      <td class="tocPages">1-10</td>
-    </tr>
-  </table>
-
-
-
-
 </div><!-- content -->
 </div><!-- main -->
 </div><!-- body -->

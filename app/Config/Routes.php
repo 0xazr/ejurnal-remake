@@ -32,6 +32,8 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('/user', 'User\Home::index');
+$routes->get('/user/profile', 'User\Profile::index');
 
 $routes->match(['get', 'post'], 'login', 'User::login', ["filter" => "noauth"]);
 // Author routes
@@ -78,6 +80,7 @@ $routes->group("editor", ["filter" => "auth"], function ($routes) {
     $routes->get('completeFinalCopyedit/(:num)', 'Editor\completeFinalCopyedit::index/$1');
     $routes->get('deleteGalley/(:num)', 'Editor\DeleteGalley::index/$1');
     $routes->get('deleteSuppFile/(:num)', 'Editor\DeleteSuppFile::index/$1');
+    $routes->get('unPublishIssueToc/(:num)', 'Editor\unPublishIssueToc::index/$1');
 });
 
 // Reviewer routes
@@ -96,6 +99,8 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
 });
 
 $routes->get('/issue/view/(:num)', 'Issue\view::index/$1');
+$routes->get('/article/view/(:num)', 'Article\view::index/$1');
+
 $routes->get('logout', 'User::logout');
 
 /*
