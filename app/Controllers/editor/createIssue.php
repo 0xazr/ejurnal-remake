@@ -8,6 +8,7 @@ class createIssue extends BaseController
 {
   public function index()
   {
-    return view('pages/editor/createIssue');
+    $data['issue'] = $this->issuesModel->findAll();
+    return view('pages/editor/createIssue', $data);
   }
 }

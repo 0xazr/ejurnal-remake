@@ -15,7 +15,10 @@ class Home extends BaseController
         }
 
         $data['articles'] = $articles;
-        $data['authors'] = $authors;
+
+        if (isset($authors)) {
+            $data['authors'] = $authors;
+        }
         // dd($data);
         return view('pages/author/home', $data);
     }

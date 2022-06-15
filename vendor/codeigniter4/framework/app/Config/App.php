@@ -23,7 +23,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://192.168.199.156/ejurnal-remake/public';
+    public $baseURL = 'http://localhost/ejurnal-remake/public';
     //public $baseURL = 'http://localhost:8080/';
 
     /**

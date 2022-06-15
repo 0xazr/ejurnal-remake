@@ -27,13 +27,18 @@
 
   <form action="#">
     Issue: <select name="issue" class="selectMenu" onchange="if(this.options[this.selectedIndex].value > 0) location.href='<?= base_url(); ?>/editor/issueToc/ISSUE_ID'.replace('ISSUE_ID', this.options[this.selectedIndex].value)" size="1">
-      <option label="------    Future Issues    ------" value="-100">------ Future Issues ------</option>
-      <option label="Vol 2, No 1 (2023)" value="790">Vol 2, No 1 (2023)</option>
-      <option label="Vol 2, No 2 (2023)" value="809">Vol 2, No 2 (2023)</option>
-      <option label="------    Current Issue    ------" value="-101">------ Current Issue ------</option>
-      <option label="Vol 1, No 1 (2022)" value="787">Vol 1, No 1 (2022)</option>
-      <option label="------    Back Issues    ------" value="-102">------ Back Issues ------</option>
-      <option label="Vol 1, No 2 (2022)" value="789">Vol 1, No 2 (2022)</option>
+      <?php if (isset($issue)) : ?>
+        <option label="------    Future Issues    ------" value="-100">------ Future Issues ------</option>
+        <?php foreach ($issue as $is) : ?>
+          <option label="Vol <?= $is['volume']; ?>, No <?= $is['number']; ?> (<?= $is['year']; ?>)" value="<?= $is['issue_id']; ?>">Vol <?= $is['volume']; ?>, No <?= $is['number']; ?> (<?= $is['year']; ?>)</option>
+        <?php endforeach; ?>
+        <option label="------    Current Issue    ------" value="-101">------ Current Issue ------</option>
+        <option label="------    Back Issues    ------" value="-102">------ Back Issues ------</option>
+      <?php else : ?>
+        <option label="------    Future Issues    ------" value="-100">------ Future Issues ------</option>
+        <option label="------    Current Issue    ------" value="-101">------ Current Issue ------</option>
+        <option label="------    Back Issues    ------" value="-102">------ Back Issues ------</option>
+      <?php endif; ?>
     </select>
   </form>
 

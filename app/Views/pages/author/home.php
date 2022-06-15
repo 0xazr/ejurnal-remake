@@ -40,7 +40,7 @@
 				<td colspan="6" class="headseparator">&nbsp;</td>
 			</tr>
 
-			<?php if (isset($articles)) : ?>
+			<?php if (isset($articles) && $articles != NULL) : ?>
 				<?php foreach ($articles as $article) : ?>
 					<tr>
 						<td colspan="6" class="separator">&nbsp;</td>

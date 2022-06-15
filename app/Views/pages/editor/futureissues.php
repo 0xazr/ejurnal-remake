@@ -38,11 +38,11 @@
         <td colspan="3" class="headseparator">&nbsp;</td>
       </tr>
       <?php if (isset($issues)) : ?>
-        <?php foreach ($issues as $is) : ?>
+        <?php foreach ($issues as $issue) : ?>
           <tr valign="top">
-            <td><a href="<?= base_url(); ?>/editor/issueToc/<?= $is['issue_id']; ?>" class="action">Vol <?= $is['volume']; ?>, No <?= $is['number']; ?> (<?= $is['year']; ?>)</a></td>
-            <td>COUNT ISSUE</td>
-            <td align="right"><a href="<?= base_url(); ?>/editor/removeIssue/<?= $is['issue_id']; ?>" onclick="return confirm('Are you sure you want to permanently delete this issue?')" class="action">Delete</a></td>
+            <td><a href="<?= base_url(); ?>/editor/issueToc/<?= $issue['issue_id']; ?>" class="action">Vol <?= $issue['volume']; ?>, No <?= $issue['number']; ?> (<?= $issue['year']; ?>)</a></td>
+            <td><?= count($article[$issue['issue_id']]); ?></td>
+            <td align="right"><a href="<?= base_url(); ?>/editor/removeIssue/<?= $issue['issue_id']; ?>" onclick="return confirm('Are you sure you want to permanently delete this issue?')" class="action">Delete</a></td>
           </tr>
         <?php endforeach; ?>
       <?php else : ?>

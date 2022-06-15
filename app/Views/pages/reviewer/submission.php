@@ -2,11 +2,11 @@
 
 <?= $this->section('content'); ?>
 <div id="breadcrumb">
-	<a href="https://iptek.its.ac.id/index.php/itj/index">Home</a> &gt;
-	<a href="https://iptek.its.ac.id/index.php/itj/user" class="hierarchyLink">User</a> &gt;
-	<a href="https://iptek.its.ac.id/index.php/itj/reviewer" class="hierarchyLink">Reviewer</a> &gt;
-	<a href="https://iptek.its.ac.id/index.php/itj/reviewer/submission/4596" class="hierarchyLink">#<?= $article["article_id"]; ?></a> &gt;
-	<a href="https://iptek.its.ac.id/index.php/itj/reviewer/submission/4596" class="current">Review</a>
+	<a href="<?= base_url(); ?>/">Home</a> &gt;
+	<a href="<?= base_url(); ?>/user" class="hierarchyLink">User</a> &gt;
+	<a href="<?= base_url(); ?>/reviewer" class="hierarchyLink">Reviewer</a> &gt;
+	<a href="<?= base_url(); ?>/reviewer/submission/<?= $article['article_id']; ?>" class="hierarchyLink">#<?= $article["article_id"]; ?></a> &gt;
+	<a href="<?= base_url(); ?>/reviewer/submission/<?= $article['article_id']; ?>" class="current">Review</a>
 </div>
 
 <h2>#<?= $article["article_id"]; ?> Review</h2>
@@ -47,14 +47,14 @@
 				<td class="label">Submission Editor</td>
 				<td class="value">
 
-					<?= $author["first_name"] . " " . $author["last_name"]; ?> <a href="https://iptek.its.ac.id/index.php/itj/user/email?to%5B%5D=Baru%20Nanto%20%3Cbarunanto%40ppi.its.ac.id%3E&amp;redirectUrl=http%3A%2F%2Fiptek.its.ac.id%2Findex.php%2Fitj%2Freviewer%2Fsubmission%2F4596&amp;subject=test&amp;articleId=12536" class="icon"><img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/mail.gif" width="16" height="14" alt="Mail" /></a>
+					<?= $author["first_name"] . " " . $author["last_name"]; ?> <a href="<?= base_url(); ?>/user/email?to%5B%5D=Baru%20Nanto%20%3Cbarunanto%40ppi.its.ac.id%3E&amp;redirectUrl=http%3A%2F%2Fiptek.its.ac.id%2Findex.php%2Fitj%2Freviewer%2Fsubmission%2F<?= $article['article_id']; ?>&amp;subject=test&amp;articleId=12536" class="icon"><img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/mail.gif" width="16" height="14" alt="Mail" /></a>
 					<br />
 				</td>
 			</tr>
 			<!-- <tr valign="top">
 	       <td class="label">Submission Metadata</td>
 	       <td class="value">
-		       <a href="<?= base_url(); ?>/reviewer/viewMetadata/4596/12536" class="action" target="_new">View Metadata</a>
+		       <a href="<?= base_url(); ?>/reviewer/viewMetadata/<?= $article['article_id']; ?>/12536" class="action" target="_new">View Metadata</a>
 	       </td>
 	</tr> -->
 		</table>

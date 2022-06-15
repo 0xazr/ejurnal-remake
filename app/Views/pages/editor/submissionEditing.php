@@ -6,8 +6,8 @@
 	<a href="<?= base_url(); ?>/user" class="hierarchyLink">User</a> &gt;
 	<a href="<?= base_url(); ?>/editor" class="hierarchyLink">Editor</a> &gt;
 	<a href="<?= base_url(); ?>/editor" class="hierarchyLink">Submissions</a> &gt;
-	<a href="<?= base_url(); ?>/editor/submission/12687" class="hierarchyLink">#12687</a> &gt;
-	<a href="<?= base_url(); ?>/editor/submissionEditing/12687" class="current">Editing</a>
+	<a href="<?= base_url(); ?>/editor/submission/<?= $article['article_id']; ?>" class="hierarchyLink">#<?= $article['article_id']; ?></a> &gt;
+	<a href="<?= base_url(); ?>/editor/submissionEditing/<?= $article['article_id']; ?>" class="current">Editing</a>
 </div>
 
 <h2>#<?= $article['article_id']; ?> Editing</h2>
@@ -21,8 +21,6 @@
 		<li><a href="<?= base_url(); ?>/editor/submissions/<?= $article['article_id']; ?>">Summary</a></li>
 		<li class="current"><a href="<?= base_url(); ?>/editor/submissionReview/<?= $article['article_id']; ?>">Review</a></li>
 		<li><a href="<?= base_url(); ?>/editor/submissionEditing/<?= $article['article_id']; ?>">Editing</a></li>
-		<li><a href="<?= base_url(); ?>/editor/submissionHistory/12687">History</a></li>
-		<li><a href="<?= base_url(); ?>/editor/submissionCitations/<?= $article['article_id']; ?>">References</a></li>
 	</ul>
 
 	<div id="submission">
@@ -56,7 +54,9 @@
 				<td class="label">Editor</td>
 				<td>
 					<?php if (isset($editor_name)) : ?>
-						<?= $editor_name['username']; ?>
+						<?= (isset($editor_name['first_name'])) ? $editor_name['first_name'] : ''; ?>
+						<?= (isset($editor_name['middle_name'])) ? $editor_name['middle_name'] : ''; ?>
+						<?= (isset($editor_name['last_name'])) ? $editor_name['last_name'] : ''; ?>
 					<?php else : ?>
 						None Assigned
 					<?php endif; ?>
@@ -487,87 +487,6 @@
 			<a href="javascript:openComments('/editor/viewLayoutComments/12687');" class="icon"><img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/comment.gif" width="16" height="14" alt="Comment" /></a> No Comments
 
 		</div>
-	</div>
-
-	<div class="separator"></div>
-
-
-	<div id="proofread">
-		<h3>Proofreading</h3>
-
-
-		<table width="100%" class="info">
-			<tr>
-				<td width="28%" colspan="2">&nbsp;</td>
-				<td width="18%" class="heading">Request</td>
-				<td width="18%" class="heading">Underway</td>
-				<td width="18%" class="heading">Complete</td>
-				<td width="18%" class="heading">Acknowledge</td>
-			</tr>
-			<tr>
-				<td width="2%">1.</td>
-				<td width="26%">Author</td>
-				<td>
-
-					<a href="<?= base_url(); ?>/editor/notifyAuthorProofreader/<?= $article['article_id']; ?>" class="icon"><img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/mail.gif" width="16" height="14" alt="Mail" /></a>
-
-
-				</td>
-				<td>
-					&mdash;
-				</td>
-				<td>
-					&mdash;
-				</td>
-				<td>
-					<img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/mail_disabled.gif" width="16" height="14" alt="Mail" />
-
-				</td>
-			</tr>
-			<tr>
-				<td>2.</td>
-				<td>Proofreader</td>
-				<td>
-					<a href="<?= base_url(); ?>/editor/editorInitiateProofreader/<?= $article['article_id']; ?>" class="action">Initiate</a>
-
-				</td>
-				<td>
-					N/A
-				</td>
-				<td>
-					&mdash;
-				</td>
-				<td>
-					N/A
-				</td>
-			</tr>
-			<tr>
-				<td>3.</td>
-				<td>Layout Editor</td>
-				<td>
-					<a href="<?= base_url(); ?>/editor/editorInitiateLayoutEditor/<?= $article['article_id']; ?>" class="action">Initiate</a>
-
-				</td>
-				<td>
-					N/A
-				</td>
-				<td>
-					&mdash;
-				</td>
-				<td>
-					N/A
-				</td>
-			</tr>
-			<tr>
-				<td colspan="6" class="separator">&nbsp;</td>
-			</tr>
-		</table>
-
-		Proofreading Corrections
-		<a href="javascript:openComments('/editor/viewProofreadComments/12687');" class="icon"><img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/comment.gif" width="16" height="14" alt="Comment" /></a>No Comments
-
-		&nbsp;&nbsp;
-		<a href="javascript:openHelp('/editor/instructions/proof')" class="action">Proofing Instructions</a>
 	</div>
 
 

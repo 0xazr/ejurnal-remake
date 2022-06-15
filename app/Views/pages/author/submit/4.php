@@ -6,14 +6,14 @@
    <a href="<?= base_url(); ?>/user" class="hierarchyLink">User</a> &gt;
    <a href="<?= base_url(); ?>/author" class="hierarchyLink">Author</a> &gt;
    <a href="<?= base_url(); ?>/author" class="hierarchyLink">Submissions</a> &gt;
-   <a href="<?= base_url(); ?>/author/submit/4?articleId=12525" class="current">New Submission</a>
+   <a href="<?= base_url(); ?>/author/submit/4/<?= $article['article_id']; ?>" class="current">New Submission</a>
 </div>
 <h2>Step 4. Uploading Supplementary Files</h2>
 <div id="content">
    <ul class="steplist">
-      <li id="step1"><a href="<?= base_url(); ?>/author/submit/1?articleId=12536">1. Start</a></li>
-      <li id="step2"><a href="<?= base_url(); ?>/author/submit/2?articleId=12536">2. Upload Submission</a></li>
-      <li id="step3"><a href="<?= base_url(); ?>/author/submit/3?articleId=12536">3. Enter Metadata</a></li>
+      <li id="step1"><a href="<?= base_url(); ?>/author/submit/1/<?= $article['article_id']; ?>">1. Start</a></li>
+      <li id="step2"><a href="<?= base_url(); ?>/author/submit/2/<?= $article['article_id']; ?>">2. Upload Submission</a></li>
+      <li id="step3"><a href="<?= base_url(); ?>/author/submit/3/<?= $article['article_id']; ?>">3. Enter Metadata</a></li>
       <li id="step4" class="current">4. Upload Supplementary Files</li>
       <li id="step5">5. Confirmation</li>
    </ul>

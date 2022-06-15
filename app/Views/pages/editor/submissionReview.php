@@ -6,8 +6,8 @@
 	<a href="<?= base_url(); ?>/user" class="hierarchyLink">User</a> &gt;
 	<a href="<?= base_url(); ?>/editor" class="hierarchyLink">Editor</a> &gt;
 	<a href="<?= base_url(); ?>/editor" class="hierarchyLink">Submissions</a> &gt;
-	<a href="<?= base_url(); ?>/editor/submission/12687" class="hierarchyLink">#12687</a> &gt;
-	<a href="<?= base_url(); ?>/editor/submissionReview/12687" class="current">Review</a>
+	<a href="<?= base_url(); ?>/editor/submission/<?= $article['article_id']; ?>" class="hierarchyLink">#<?= $article['article_id']; ?></a> &gt;
+	<a href="<?= base_url(); ?>/editor/submissionReview/<?= $article['article_id']; ?>" class="current">Review</a>
 </div>
 
 <h2>#<?= $article['article_id']; ?> Review</h2>
@@ -21,7 +21,7 @@
 		<li><a href="<?= base_url(); ?>/editor/submissions/<?= $article['article_id']; ?>">Summary</a></li>
 		<li class="current"><a href="<?= base_url(); ?>/editor/submissionReview/<?= $article['article_id']; ?>">Review</a></li>
 		<li><a href="<?= base_url(); ?>/editor/submissionEditing/<?= $article['article_id']; ?>">Editing</a></li>
-		<li><a href="<?= base_url(); ?>/editor/submissionHistory/12687">History</a></li>
+		<li><a href="<?= base_url(); ?>/editor/submissionHistory/<?= $article['article_id']; ?>">History</a></li>
 		<li><a href="<?= base_url(); ?>/editor/submissionCitations/<?= $article['article_id']; ?>">References</a></li>
 	</ul>
 
@@ -345,7 +345,7 @@
 				<td width="20%" class="label">Author Version</td>
 				<td width="80%" class="nodata">
 					<?php if (isset($author_version)) : ?>
-						<?php if (isset($notified)) : ?>
+						<?php if (isset($notified) && (!isset($copyedit_file))) : ?>
 							<input type="radio" name="editorDecisionFile" value="<?= $author_version['article_revision_file_id']; ?>">
 							<a href="/editor/downloadFile/<?= $author_version['file_id'] ?>">
 								<?= $author_version['file_name']; ?>

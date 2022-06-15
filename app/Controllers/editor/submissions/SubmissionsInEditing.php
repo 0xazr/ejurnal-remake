@@ -8,8 +8,14 @@ class SubmissionsInEditing extends BaseController
 {
     public function index()
     {
+        $articles = $this->articlesModel->where('status', 'In Editing')->findAll();
+        foreach ($articles as $article) {
+            $authors[$article['article_id']] = $this->articleAuthorsModel->where('article_id', $article['article_id'])->findAll();
+        }
+
         $data = [
-            'article' => $this->articlesModel->joinArticleIE()->findAll()
+            'articles' => $articles,
+            'authors' => $authors
         ];
         return view('pages/editor/submissions/submissionsInEditing', $data);
     }
