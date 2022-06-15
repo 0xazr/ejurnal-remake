@@ -76,7 +76,13 @@
 			</tr>
 			<tr>
 				<td class="label">Date submitted</td>
-				<td>2022-05-25</td>
+				<td>
+					<?php if (isset($article['date_submit'])) : ?>
+						<?= $article['date_submit']; ?>
+					<?php else : ?>
+						<?= $article['date_created']; ?>
+					<?php endif; ?>
+				</td>
 			</tr>
 			<tr>
 				<td class="label">Section</td>
