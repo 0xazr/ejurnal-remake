@@ -5,7 +5,7 @@
 <div id="breadcrumb">
   <a href="<?= base_url(); ?>/index">Home</a> &gt;
   <a href="<?= base_url(); ?>/user" class="hierarchyLink">User</a> &gt;
-  <a href="<?= base_url(); ?>/author" class="hierarchyLink">Editor</a> &gt;
+  <a href="<?= base_url(); ?>/author" class="hierarchyLink">Author</a> &gt;
   <a href="<?= base_url(); ?>/author" class="hierarchyLink">Submissions</a> &gt;
   <a href="<?= base_url(); ?>/author/submission/<?= $article["article_id"]; ?>" class="hierarchyLink">#<?= $article["article_id"]; ?></a> &gt;
   <a href="<?= base_url(); ?>/author/submission/<?= $article["article_id"]; ?>" class="current">Summary</a>
@@ -32,8 +32,15 @@
       <tr>
         <td width="20%" class="label">Authors</td>
         <td width="80%" colspan="2" class="value">
-
-          <?= $article["first_name"]; ?> <?= $article["middle_name"]; ?> <?= $article["last_name"]; ?> <a href="<?= base_url(); ?>/user/email?redirectUrl=http%3A%2F%2Fiptek.its.ac.id%2Findex.php%2Fitj%2Feditor%2Fsubmission%2F<?= $article["article_id"]; ?>&amp;to%5B%5D=%22Cyntia%20dfdsd%20Niani%22%20%3Ccyntian%40ppi.its.ac.id%3E&amp;subject=xczxzcxcz&amp;articleId=<?= $article["article_id"]; ?>" class="icon"><img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/mail.gif" width="16" height="14" alt="Mail" /></a>
+          <?php for ($i = 0; $i < count($authors); $i++) :  ?>
+            <?php if (count($authors) == 1) : ?>
+              <?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name']; ?>
+            <?php elseif ($i < count($authors) - 1) : ?>
+              <?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name'] . ', '; ?>
+            <?php elseif ($i == count($authors) - 1) : ?>
+              <?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name']; ?>
+            <?php endif; ?>
+          <?php endfor; ?>
         </td>
       </tr>
       <tr>
@@ -67,12 +74,12 @@
         <td class="label">Submitter</td>
         <td colspan="2" class="value">
 
-          <?= $article["first_name"]; ?> <?= $article["last_name"]; ?> <a href="<?= base_url(); ?>/user/email?redirectUrl=http%3A%2F%2Fiptek.its.ac.id%2Findex.php%2Fitj%2Feditor%2Fsubmission%2F<?= $article["article_id"]; ?>&amp;to%5B%5D=Cyntia%20Niani%20%3Ccyntian%40ppi.its.ac.id%3E&amp;subject=&amp;articleId=<?= $article["article_id"]; ?>" class="icon"><img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/mail.gif" width="16" height="14" alt="Mail" /></a>
+          <?= $submitter["first_name"]; ?> <?= $submitter["last_name"]; ?>
         </td>
       </tr>
       <tr>
         <td class="label">Date submitted</td>
-        <td>2022-05-25</td>
+        <td><?= $article['date_submit']; ?></td>
       </tr>
       <tr>
         <td class="label">Section</td>
@@ -90,7 +97,7 @@
       </tr>
       <tr valign="top">
         <td width="20%" class="label">Author comments</td>
-        <td width="80%" colspan="2" class="data"><?= $article["author_to_editor"]; ?><br /></td>
+        <td width="80%" colspan="2" class="data"><?= $author_comments; ?><br /></td>
       </tr>
     </table>
   </div>

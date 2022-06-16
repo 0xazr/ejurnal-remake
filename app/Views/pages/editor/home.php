@@ -40,7 +40,6 @@
 
     <ul class="plain">
       <li>&#187; <a href="<?= base_url(); ?>/editor/createIssue">Create Issue</a></li>
-      <li>&#187; <a href="<?= base_url(); ?>/editor/notifyUsers">Notify Users</a></li>
       <li>&#187; <a href="<?= base_url(); ?>/editor/futureIssues">Future Issues</a></li>
       <li>&#187; <a href="<?= base_url(); ?>/editor/backIssues">Back Issues</a></li>
 

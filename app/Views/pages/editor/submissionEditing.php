@@ -30,13 +30,15 @@
 			<tr>
 				<td width="20%" class="label">Authors</td>
 				<td width="80%">
-					<?php if (isset($article['first_name'])) : ?>
-						<?= $article['first_name']; ?>
-					<?php elseif (isset($article['first_name']) && $article['middle_name']) : ?>
-						<?= $article['first_name'] . " " . $article['middle_name']; ?>
-					<?php elseif (isset($article['first_name']) && $article['middle_name'] && $article['last_name']) : ?>
-						<?= $article['first_name'] . " " . $article['first_name'] . " " . $article['last_name']; ?>
-					<?php endif; ?>
+					<?php for ($i = 0; $i < count($authors); $i++) :  ?>
+						<?php if (count($authors) == 1) : ?>
+							<?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name']; ?>
+						<?php elseif ($i < count($authors) - 1) : ?>
+							<?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name'] . ', '; ?>
+						<?php elseif ($i == count($authors) - 1) : ?>
+							<?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name']; ?>
+						<?php endif; ?>
+					<?php endfor; ?>
 					<a href="<?= base_url(); ?>/user/email?redirectUrl=http%3A%2F%2Fiptek.its.ac.id%2Findex.php%2Fitj%2Feditor%2FsubmissionEditing%2F12687&amp;to%5B%5D=%22Cyntia%20dfdsd%20Niani%22%20%3Ccyntian%40ppi.its.ac.id%3E&amp;subject=xczxzcxcz&amp;articleId=12687" class="icon"><img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/mail.gif" width="16" height="14" alt="Mail" /></a>
 				</td>
 			</tr>

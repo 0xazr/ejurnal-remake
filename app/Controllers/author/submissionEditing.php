@@ -17,7 +17,8 @@ class submissionEditing extends BaseController
       $data['copyedit_file'] = $copyEditingFile;
     }
 
-    $data['article'] =  $this->articlesModel->joinArticleAuthorFiles($article_id)->first();
+    $data['article'] = $this->articlesModel->find($article_id);
+    $data['authors'] = $this->articleAuthorsModel->where('article_id', $data['article']['article_id'])->findAll();
 
     if ($issue = $this->issuesModel->findAll()) {
       $data['issue'] = $issue;

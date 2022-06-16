@@ -58,7 +58,7 @@
 						<?php endfor; ?>
 					</td>
 					<td>
-						<a href="<?= base_url('/editor/submissionReview/' . $article['article_id']); ?>"><?= $article['title']; ?></a>
+						<a href="<?= base_url('/editor/submissionEditing/' . $article['article_id']); ?>"><?= $article['title']; ?></a>
 					</td>
 				</tr>
 			<?php endforeach; ?>

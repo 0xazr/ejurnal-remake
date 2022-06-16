@@ -34,6 +34,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->get('/user', 'User\Home::index');
 $routes->get('/user/profile', 'User\Profile::index');
+$routes->post('/user/updateUser', 'User\UpdateUser::index');
+$routes->post('/user/changePassword', 'User\ChangePassword::index');
 
 $routes->match(['get', 'post'], 'login', 'User::login', ["filter" => "noauth"]);
 // Author routes
@@ -81,6 +83,7 @@ $routes->group("editor", ["filter" => "auth"], function ($routes) {
     $routes->get('deleteGalley/(:num)', 'Editor\DeleteGalley::index/$1');
     $routes->get('deleteSuppFile/(:num)', 'Editor\DeleteSuppFile::index/$1');
     $routes->get('unPublishIssueToc/(:num)', 'Editor\unPublishIssueToc::index/$1');
+    $routes->get('removeIssue/(:num)', 'Editor\removeIssue::index/$1');
 });
 
 // Reviewer routes
@@ -97,6 +100,7 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "Admin\Home::index");
     $routes->get('detailUser/(:num)', 'Admin\DetailUser::index/$1');
     $routes->post('changeUserPassword', 'Admin\ChangeUserPassword::index');
+    $routes->get('deleteUser/(:num)', 'Admin\DeleteUser::index/$1');
 });
 
 $routes->get('/issue/view/(:num)', 'Issue\view::index/$1');

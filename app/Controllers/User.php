@@ -23,7 +23,7 @@ class User extends BaseController
             $password = $this->request->getVar('password');
 
             // mencocokkan inputan user dengan data di database
-            $user = $model->where('username', $username)->first();
+            $user = $model->where('username', $username)->where('is_active', 1)->first();
 
             // mengambil data user
 

@@ -90,6 +90,7 @@ class ArticlesModel extends Model
             ->select()
             ->join('assignments', 'assignments.article_id = articles.article_id')
             ->where('assignments.round', 1)
-            ->where('assignments.reviewer_id', $reviewer_id);
+            ->where('assignments.reviewer_id', $reviewer_id)
+            ->where('articles.status', 'In Review');
     }
 }

@@ -54,7 +54,7 @@
 
                      <ul class="list_style_side">
                         <li>
-                           <a href="<?= base_url('/' . session()->get('role')); ?>">My Journals</a>
+                           <a href="<?= base_url('/' . session()->get('role')); ?>"><?= (session()->get('role') == 'admin') ? 'Dashboard' : 'My Journals'; ?></a>
                         </li>
                         <li>
                            <a href="<?= base_url('/user/profile'); ?>">My Profile</a>

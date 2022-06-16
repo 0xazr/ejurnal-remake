@@ -30,7 +30,15 @@
 			<tr>
 				<td width="20%" class="label">Authors</td>
 				<td width="80%">
-					<?= $article['first_name']; ?>
+					<?php for ($i = 0; $i < count($authors); $i++) :  ?>
+						<?php if (count($authors) == 1) : ?>
+							<?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name']; ?>
+						<?php elseif ($i < count($authors) - 1) : ?>
+							<?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name'] . ', '; ?>
+						<?php elseif ($i == count($authors) - 1) : ?>
+							<?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name']; ?>
+						<?php endif; ?>
+					<?php endfor; ?>
 				</td>
 			</tr>
 			<tr>

@@ -89,7 +89,8 @@ class SubmissionReview extends BaseController
             $data['copyedit_file'] = $copyedit_file;
         }
 
-        $data['article'] = $this->articlesModel->joinArticleAuthorFiles($article_id)->first();
+        $data['article'] = $this->articlesModel->find($article_id);
+        $data['authors'] = $this->articleAuthorsModel->where('article_id', $data['article']['article_id'])->findAll();
         $data['supplementary_files'] = $this->articleSupplementaryFilesModel->where('article_id', $article_id)->first();
 
         return view('pages/editor/submissionReview', $data);

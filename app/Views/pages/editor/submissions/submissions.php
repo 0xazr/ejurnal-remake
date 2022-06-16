@@ -32,8 +32,15 @@
 			<tr>
 				<td width="20%" class="label">Authors</td>
 				<td width="80%" colspan="2" class="value">
-
-					<?= $article["first_name"]; ?> <?= $article["middle_name"]; ?> <?= $article["last_name"]; ?> <a href="<?= base_url(); ?>/user/email?redirectUrl=http%3A%2F%2Fiptek.its.ac.id%2Findex.php%2Fitj%2Feditor%2Fsubmission%2F<?= $article["article_id"]; ?>&amp;to%5B%5D=%22Cyntia%20dfdsd%20Niani%22%20%3Ccyntian%40ppi.its.ac.id%3E&amp;subject=xczxzcxcz&amp;articleId=<?= $article["article_id"]; ?>" class="icon"><img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/mail.gif" width="16" height="14" alt="Mail" /></a>
+					<?php for ($i = 0; $i < count($authors); $i++) :  ?>
+						<?php if (count($authors) == 1) : ?>
+							<?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name']; ?>
+						<?php elseif ($i < count($authors) - 1) : ?>
+							<?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name'] . ', '; ?>
+						<?php elseif ($i == count($authors) - 1) : ?>
+							<?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name']; ?>
+						<?php endif; ?>
+					<?php endfor; ?>
 				</td>
 			</tr>
 			<tr>
@@ -69,7 +76,7 @@
 				<td class="label">Submitter</td>
 				<td colspan="2" class="value">
 
-					<?= $article["first_name"]; ?> <?= $article["last_name"]; ?> <a href="<?= base_url(); ?>/user/email?redirectUrl=http%3A%2F%2Fiptek.its.ac.id%2Findex.php%2Fitj%2Feditor%2Fsubmission%2F<?= $article["article_id"]; ?>&amp;to%5B%5D=Cyntia%20Niani%20%3Ccyntian%40ppi.its.ac.id%3E&amp;subject=&amp;articleId=<?= $article["article_id"]; ?>" class="icon"><img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/mail.gif" width="16" height="14" alt="Mail" /></a>
+					<?= $submitter["first_name"]; ?> <?= $submitter["last_name"]; ?>
 				</td>
 			</tr>
 			<tr>
@@ -93,7 +100,7 @@
 			</tr>
 			<tr valign="top">
 				<td width="20%" class="label">Author comments</td>
-				<td width="80%" colspan="2" class="data"><?= $article["author_to_editor"]; ?><br /></td>
+				<td width="80%" colspan="2" class="data"><?= $author_comments; ?><br /></td>
 			</tr>
 		</table>
 	</div>
@@ -194,46 +201,41 @@
 			<h4>Authors</h4>
 
 			<table width="100%" class="data">
-				<tr valign="top">
-					<td width="20%" class="label">Name</td>
-					<td width="80%" class="value">
-						<?php if (isset($article['first_name'])) : ?>
-							<?= $article['first_name']; ?>
-						<?php elseif (isset($article['first_name']) && $article['middle_name']) : ?>
-							<?= $article['first_name'] . " " . $article['middle_name']; ?>
-						<?php elseif (isset($article['first_name']) && $article['middle_name'] && $article['last_name']) : ?>
-							<?= $article['first_name'] . " " . $article['first_name'] . " " . $article['last_name']; ?>
-						<?php endif; ?>
-						<a href="<?= base_url(); ?>/user/email?redirectUrl=http%3A%2F%2Fiptek.its.ac.id%2Findex.php%2Fitj%2Feditor%2Fsubmission%2F<?= $article["article_id"]; ?>&amp;to%5B%5D=Cyntia%20dfdsd%20Niani%20%3Ccyntian%40ppi.its.ac.id%3E&amp;subject=xczxzcxcz&amp;articleId=<?= $article["article_id"]; ?>" class="icon"><img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/mail.gif" width="16" height="14" alt="Mail" /></a>
-					</td>
-				</tr>
-				<tr valign="top">
-					<td class="label">Affiliation</td>
-					<td class="value">
-						<?php if (isset($article["affiliation"])) : ?>
-							<?= $article["affiliation"]; ?>
-						<?php else : ?>
-						<?php endif; ?>
-					</td>
-				</tr>
-				<tr valign="top">
-					<td class="label">Country</td>
-					<td class="value">
-						<?php if (isset($article["country"])) : ?>
-							<?= $article["country"]; ?>
-						<?php else : ?>
-						<?php endif; ?>
-					</td>
-				</tr>
-				<tr valign="top">
-					<td class="label">Bio Statement</td>
-					<td class="value">
-						<?php if (isset($article["bio"])) : ?>
-							<?= $article["bio"]; ?>
-						<?php else : ?>
-						<?php endif; ?>
-					</td>
-				</tr>
+				<?php foreach ($authors as $author) : ?>
+					<tr valign="top">
+						<td width="20%" class="label">Name</td>
+						<td width="80%" class="value">
+							<?= $author['first_name'] . ' ' . $author['last_name']; ?>
+						</td>
+					</tr>
+					<tr valign="top">
+						<td class="label">Affiliation</td>
+						<td class="value">
+							<?php if (isset($author["affiliation"])) : ?>
+								<?= $author["affiliation"]; ?>
+							<?php else : ?>
+							<?php endif; ?>
+						</td>
+					</tr>
+					<tr valign="top">
+						<td class="label">Country</td>
+						<td class="value">
+							<?php if (isset($author["country"])) : ?>
+								<?= $author["country"]; ?>
+							<?php else : ?>
+							<?php endif; ?>
+						</td>
+					</tr>
+					<tr valign="top">
+						<td class="label">Bio Statement</td>
+						<td class="value">
+							<?php if (isset($author["bio"])) : ?>
+								<?= $author["bio"]; ?>
+							<?php else : ?>
+							<?php endif; ?>
+						</td>
+					</tr>
+				<?php endforeach; ?>
 				<tr valign="top">
 					<td colspan="2" class="label">Principal contact for editorial correspondence.</td>
 				</tr>

@@ -4,10 +4,10 @@
 <div id="breadcrumb">
   <a href="<?= base_url(); ?>/index">Home</a> &gt;
   <a href="<?= base_url(); ?>/user" class="hierarchyLink">User</a> &gt;
-  <a href="<?= base_url(); ?>/author" class="hierarchyLink">Editor</a> &gt;
+  <a href="<?= base_url(); ?>/author" class="hierarchyLink">Author</a> &gt;
   <a href="<?= base_url(); ?>/author" class="hierarchyLink">Submissions</a> &gt;
-  <a href="<?= base_url(); ?>/author/submission/12687" class="hierarchyLink">#12687</a> &gt;
-  <a href="<?= base_url(); ?>/author/submissionReview/12687" class="current">Review</a>
+  <a href="<?= base_url(); ?>/author/submission/<?= $article['article_id']; ?>" class="hierarchyLink">#<?= $article['article_id']; ?></a> &gt;
+  <a href="<?= base_url(); ?>/author/submissionReview/<?= $article['article_id']; ?>" class="current">Review</a>
 </div>
 
 <h2>#<?= $article['article_id']; ?> Review</h2>
@@ -30,7 +30,15 @@
       <tr>
         <td width="20%" class="label">Authors</td>
         <td width="80%">
-          <?= $article['first_name']; ?>
+          <?php for ($i = 0; $i < count($authors); $i++) :  ?>
+            <?php if (count($authors) == 1) : ?>
+              <?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name']; ?>
+            <?php elseif ($i < count($authors) - 1) : ?>
+              <?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name'] . ', '; ?>
+            <?php elseif ($i == count($authors) - 1) : ?>
+              <?= $authors[$i]['first_name'] . ' ' . $authors[$i]['last_name']; ?>
+            <?php endif; ?>
+          <?php endfor; ?>
         </td>
       </tr>
       <tr>
