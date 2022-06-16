@@ -41,7 +41,7 @@
         <?php foreach ($issues as $issue) : ?>
           <tr valign="top">
             <td><a href="<?= base_url(); ?>/editor/issueToc/<?= $issue['issue_id']; ?>" class="action">Vol <?= $issue['volume']; ?>, No <?= $issue['number']; ?> (<?= $issue['year']; ?>)</a></td>
-            <td><?= count($article[$issue['issue_id']]); ?></td>
+            <td><?= ($article[$issue['issue_id']] != NULL) ? count($article[$issue['issue_id']]) : ''; ?></td>
             <td align="right"><a href="<?= base_url(); ?>/editor/removeIssue/<?= $issue['issue_id']; ?>" onclick="return confirm('Are you sure you want to permanently delete this issue?')" class="action">Delete</a></td>
           </tr>
         <?php endforeach; ?>

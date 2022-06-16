@@ -14,6 +14,7 @@ class saveIssue extends BaseController
       'year' => $this->request->getVar('year'),
       'title' => $this->request->getVar('title'),
       'description' => $this->request->getVar('description'),
+      'status' => 0,
     ]);
 
     return redirect()->to('editor/futureIssues/');

@@ -8,13 +8,14 @@ class futureissues extends BaseController
 {
   public function index()
   {
-    $issues = $this->issuesModel->findAll();
-
-    foreach ($issues as $issue) {
-      if ($issue['status'] != 1) {
+    if ($issues = $this->issuesModel->notLike('status', 1)->findAll()) {
+      foreach ($issues as $issue) {
         $data['article'][$issue['issue_id']] = $this->articlesModel->where('issue_id', $issue['issue_id'])->findAll();
       }
     }
+    // dd($issues);
+
+
 
     $data['issues'] = $issues;
     // dd($this->issuesModel->findAll());
