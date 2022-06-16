@@ -95,7 +95,8 @@ $routes->group("reviewer", ["filter" => "auth"], function ($routes) {
 // Admin routes
 $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "Admin\Home::index");
-    $routes->get('users', 'Admin\Users::index');
+    $routes->get('detailUser/(:num)', 'Admin\DetailUser::index/$1');
+    $routes->post('changeUserPassword', 'Admin\ChangeUserPassword::index');
 });
 
 $routes->get('/issue/view/(:num)', 'Issue\view::index/$1');

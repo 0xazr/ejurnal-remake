@@ -93,7 +93,7 @@
                 <?php endif; ?>
               <?php endfor; ?>
             </td>
-            <td class="drag"><a href="<?= base_url(); ?>/editor/submission/<?= $schedule_publication['article_id']; ?>" class="action"><?= $articles[$schedule_publication['article_id']]['title']; ?></a></td>
+            <td class="drag"><a href="<?= base_url(); ?>/editor/submissions/<?= $schedule_publication['article_id']; ?>" class="action"><?= $articles[$schedule_publication['article_id']]['title']; ?></a></td>
             <!-- <td><input type="text" name="pages[12541]" value="" size="7" maxlength="255" class="textField" /></td>
             <td><input type="checkbox" name="remove[12541]" value="5700" /></td>
             <td>

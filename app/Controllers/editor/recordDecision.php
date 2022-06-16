@@ -68,7 +68,7 @@ class recordDecision extends BaseController
                 ]);
                 $this->articlesModel->save([
                     'article_id' => $article_id,
-                    'status' => "In Editing",
+                    'status' => "Archived",
                 ]);
                 return redirect()->to(base_url('/editor/submissionReview/' . $article_id));
                 // break;

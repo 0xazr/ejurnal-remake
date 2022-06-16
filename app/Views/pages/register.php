@@ -31,7 +31,7 @@
       <tr>
         <td>Role</td>
         <td>
-          <select name="role" id="">
+          <select name="role" id="role" class="selectMenu">
             <option name="role" value="author">author</option>
             <option name="role" value="editor">editor</option>
             <option name="role" value="reviewer">reviewer</option>

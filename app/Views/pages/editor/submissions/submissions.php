@@ -22,8 +22,6 @@
 		<li class="current"><a href="<?= base_url(); ?>/editor/submission/<?= $article["article_id"]; ?>">Summary</a></li>
 		<li><a href="<?= base_url(); ?>/editor/submissionReview/<?= $article["article_id"]; ?>">Review</a></li>
 		<li><a href="<?= base_url(); ?>/editor/submissionEditing/<?= $article["article_id"]; ?>">Editing</a></li>
-		<li><a href="<?= base_url(); ?>/editor/submissionHistory/<?= $article["article_id"]; ?>">History</a></li>
-		<li><a href="<?= base_url(); ?>/editor/submissionCitations/<?= $article["article_id"]; ?>">References</a></li>
 	</ul>
 
 	<div id="submission">

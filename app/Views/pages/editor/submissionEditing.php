@@ -19,8 +19,8 @@
 
 	<ul class="menu">
 		<li><a href="<?= base_url(); ?>/editor/submissions/<?= $article['article_id']; ?>">Summary</a></li>
-		<li class="current"><a href="<?= base_url(); ?>/editor/submissionReview/<?= $article['article_id']; ?>">Review</a></li>
-		<li><a href="<?= base_url(); ?>/editor/submissionEditing/<?= $article['article_id']; ?>">Editing</a></li>
+		<li><a href="<?= base_url(); ?>/editor/submissionReview/<?= $article['article_id']; ?>">Review</a></li>
+		<li class="current"><a href="<?= base_url(); ?>/editor/submissionEditing/<?= $article['article_id']; ?>">Editing</a></li>
 	</ul>
 
 	<div id="submission">

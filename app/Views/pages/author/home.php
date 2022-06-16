@@ -80,7 +80,7 @@
 						<?php elseif ($article['status'] == "In Editing") : ?>
 							<td align="right"><a href="<?= base_url(); ?>/author/submissionEditing/<?= $article['article_id']; ?>" class="action"><?= $article['status'] ?></a></td>
 						<?php else : ?>
-							<td align="right"><a href="<?= base_url(); ?>/author/submissionReview/<?= $article['article_id']; ?>" class="action"><?= $article['status'] ?></a></td>
+							<td align="right"><?= $article['status'] ?></td>
 						<?php endif; ?>
 					</tr>
 				<?php endforeach; ?>
