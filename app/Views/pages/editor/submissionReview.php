@@ -170,7 +170,7 @@
 						<?php endif; ?>
 					</td>
 					<td>
-						DUE DI ISI APA?
+
 					</td>
 					<td>
 						<?php if (isset($review_version)) : ?>

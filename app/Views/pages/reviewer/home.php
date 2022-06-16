@@ -32,7 +32,6 @@
 				<td width="5%"><span class="disabled">MM-DD</span><br /><a href="<?= base_url(); ?>/reviewer/index?sort=assignDate&amp;sortDirection=1">Assigned</a></td>
 				<td width="5%"><a href="<?= base_url(); ?>/reviewer/index?sort=section&amp;sortDirection=1">Sec</a></td>
 				<td width="70%"><a href="<?= base_url(); ?>/reviewer/index?sort=title&amp;sortDirection=1" style="font-weight:bold">Title</a></td>
-				<td width="5%"><a href="<?= base_url(); ?>/reviewer/index?sort=dueDate&amp;sortDirection=1">Due</a></td>
 				<td width="10%"><a href="<?= base_url(); ?>/reviewer/index?sort=round&amp;sortDirection=1">Review Round</a></td>
 			</tr>
 			<tr>
@@ -46,7 +45,6 @@
 						<td><?= $article['date_assign_reviewer']; ?></td>
 						<td>ART</td>
 						<td><a href="<?= base_url(); ?>/reviewer/submission/<?= $article["assignment_id"]; ?>" class="action"><?= $article["title"]; ?></a></td>
-						<td class="nowrap">DUE?</td>
 						<td><?= $article['round']; ?></td>
 					</tr>
 				<?php endforeach; ?>
