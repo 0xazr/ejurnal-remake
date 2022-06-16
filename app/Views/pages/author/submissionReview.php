@@ -75,56 +75,48 @@
         <td width="14%"></td>
         <td width="64%"></td>
       </tr>
+      <tr valign="top">
+        <td class="label" width="20%">
+          Review Version
+        </td>
+        <td class="value" width="80%">
+          <?php if (isset($review_version['file_name'])) : ?>
+            <a href="<?= base_url(); ?>/author/downloadFile/12923/32355/1" class="file">
+              <?= $review_version['file_name']; ?>
+            </a>&nbsp;&nbsp;<?= $review_version['date_uploaded']; ?>
+          <?php else : ?>
+            &mdash;
+          <?php endif; ?>
+        </td>
+      </tr>
+      <tr valign="top">
+        <td class="label" width="20%">
+          Last modified
+        </td>
+        <td class="value" width="80%">
+          <?php if (isset($assign_reviewer['date_assign_reviewer'])) : ?>
+            <?= $assign_reviewer['date_assign_reviewer']; ?>
+          <?php else : ?>
+            &mdash;
+          <?php endif; ?>
+        </td>
+      </tr>
+      <tr valign="top">
+        <td class="label" width="20%">
+          Uploaded file
+        </td>
+        <td class="value" width="80%">
+          <?php if (isset($reviewer_version['file_name'])) : ?>
+            <a href="">
+              <?= $reviewer_version['file_name']; ?>
+            </a>&nbsp;&nbsp;<?= $review_version['date_uploaded']; ?>
+          <?php else : ?>
+            None
+          <?php endif; ?>
+        </td>
+      </tr>
     </table>
-
-    <?php if (isset($assign_reviewer)) : ?>
-      <table>
-        <tr>
-          <td>
-            <h4>Round 1</h4>
-          </td>
-          <td colspan="3"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Review Version</td>
-          <td>
-            <?php if (isset($review_version)) : ?>
-              <a href="/author/downloadFile/<?= $review_version['file_id'] ?>">
-                <?= $review_version['file_name']; ?>
-              </a>
-              <?= $review_version['date_uploaded']; ?>
-            <?php else : ?>
-              None
-            <?php endif; ?>
-          </td>
-        </tr>
-        <tr>
-          <td>Initiated</td>
-          <td>
-            <?php if (isset($assignment['date_assign_reviewer'])) : ?>
-              <?= $assignment['date_assign_reviewer']; ?>
-            <?php else : ?>
-              None
-            <?php endif; ?>
-          </td>
-        </tr>
-        <tr>
-          <td>Uploaded file</td>
-          <td>
-            <?php if (isset($reviewer_version)) : ?>
-              <a href="<?= base_url(); ?>/author/downloadFile/<?= $reviewer_version['file_id']; ?>">
-                <?= $reviewer_version['file_name']; ?>
-              </a>
-            <?php else : ?>
-              None
-            <?php endif; ?>
-          </td>
-        </tr>
-      </table>
-    <?php else : ?>
-    <?php endif; ?>
-
+    <br>
   </div>
 
   <div class="separator"></div>

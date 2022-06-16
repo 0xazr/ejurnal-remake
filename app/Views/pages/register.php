@@ -1,57 +1,56 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<div id="breadcrumb">
+<h2>Register Account</h2>
+<div id="content">
+  <p>Register account as author : </p>
   <form action="<?= base_url(); ?>/User/daftar" method="post">
-    <table>
-      <tr>
-        <td>First Name</td>
-        <td>
-          <input type="text" name="first_name">
+    <table class="data" width="100%">
+      <tr valign="top">
+        <td width="20%" class="label">First Name *</td>
+        <td width="80%" class="value">
+          <input type="text" name="first_name" class="textField">
         </td>
       </tr>
-      <tr>
-        <td>Last Name</td>
-        <td>
-          <input type="text" name="last_name">
+      <tr valign="top">
+        <td width="20%" class="label">Middle Name</td>
+        <td width="80%" class="value">
+          <input type="text" name="middle_name" class="textField">
         </td>
       </tr>
-      <tr>
-        <td>Email</td>
+      <tr valign="top">
+        <td>Last Name *</td>
         <td>
-          <input type="text" name="email">
+          <input type="text" name="last_name" class="textField">
         </td>
       </tr>
-      <tr>
-        <td>Username</td>
+      <tr valign="top">
+        <td>Email *</td>
         <td>
-          <input type="text" name="username">
+          <input type="text" name="email" class="textField">
         </td>
       </tr>
-      <tr>
-        <td>Role</td>
+      <tr valign="top">
+        <td>Username *</td>
         <td>
-          <select name="role" id="role" class="selectMenu">
-            <option name="role" value="author">author</option>
-            <option name="role" value="editor">editor</option>
-            <option name="role" value="reviewer">reviewer</option>
-          </select>
+          <input type="text" name="username" class="textField">
         </td>
       </tr>
-      <tr>
-        <td>Password</td>
+      <tr valign="top">
+        <td>Password *</td>
         <td>
-          <input type="password" name="password">
+          <input type="password" name="password" class="textField">
         </td>
       </tr>
-      <tr>
-        <td>Confirm Password</td>
+      <tr valign="top">
+        <td>Confirm Password *</td>
         <td>
-          <input type="password" name="password_conf">
+          <input type="password" name="password_conf" class="textField">
         </td>
       </tr>
     </table>
-    <input type="submit" value="Register">
+    <p><span class="formRequired">* Denotes required field</span></p><br>
+    <input type="submit" value="Register" class="button defaultButton">
   </form>
 </div>
 <?= $this->endSection(); ?>

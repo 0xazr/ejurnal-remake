@@ -290,11 +290,6 @@
   </div>
   <div class="separator"></div>
 
-  Proofreading Corrections
-  <a href="javascript:openComments('/author/viewProofreadComments/<?= $article['article_id']; ?>');" class="icon"><img src="https://iptek.its.ac.id/lib/pkp/templates/images/icons/comment.gif" width="16" height="14" alt="Comment" /></a>No Comments
-
-  &nbsp;&nbsp;
-  <a href="javascript:openHelp('/author/instructions/proof')" class="action">Proofing Instructions</a>
 </div>
 
 

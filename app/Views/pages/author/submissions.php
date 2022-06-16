@@ -27,7 +27,6 @@
   <div id="submission">
     <h3>Submission</h3>
 
-
     <table width="100%" class="data">
       <tr>
         <td width="20%" class="label">Authors</td>

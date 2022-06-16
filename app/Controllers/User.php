@@ -108,6 +108,7 @@ class User extends BaseController
     ////////////////////////////////////
     public function daftar()
     {
+        // dd($this->request->getPost());
         // validasi pengecekan data
         if (!$this->validate([
             'username' => [
@@ -157,9 +158,10 @@ class User extends BaseController
         $this->usersModel->insert([
             'username' => $this->request->getVar('username'),
             'password' => password_hash($this->request->getVar('password'), PASSWORD_BCRYPT),
-            'role' => $this->request->getPost('role'),
+            'role' => 'author',
             'email' => $this->request->getVar('email'),
             'first_name' => $this->request->getVar('first_name'),
+            'middle_name' => $this->request->getVar('middle_name'),
             'last_name' => $this->request->getVar('last_name'),
         ]);
 
