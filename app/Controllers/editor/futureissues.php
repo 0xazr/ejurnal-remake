@@ -11,7 +11,9 @@ class futureissues extends BaseController
     $issues = $this->issuesModel->findAll();
 
     foreach ($issues as $issue) {
-      $data['article'][$issue['issue_id']] = $this->articlesModel->where('issue_id', $issue['issue_id'])->findAll();
+      if ($issue['status'] != 1) {
+        $data['article'][$issue['issue_id']] = $this->articlesModel->where('issue_id', $issue['issue_id'])->findAll();
+      }
     }
 
     $data['issues'] = $issues;

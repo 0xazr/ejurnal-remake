@@ -37,7 +37,7 @@
       <tr>
         <td colspan="3" class="headseparator">&nbsp;</td>
       </tr>
-      <?php if (isset($issues)) : ?>
+      <?php if (isset($issues) && isset($article)) : ?>
         <?php foreach ($issues as $issue) : ?>
           <tr valign="top">
             <td><a href="<?= base_url(); ?>/editor/issueToc/<?= $issue['issue_id']; ?>" class="action">Vol <?= $issue['volume']; ?>, No <?= $issue['number']; ?> (<?= $issue['year']; ?>)</a></td>
